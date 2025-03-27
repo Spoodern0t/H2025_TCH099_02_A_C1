@@ -1,0 +1,532 @@
+
+/* ------- Définition de constante pour les thèmes de couleur ------- */
+:root {
+  --thead-color: rgba(0,136,169,1);
+  --body-color:#FFF;
+  --bd-color: #E4E9F7;
+  --time-color: hsl(210, 5%, 70%);
+  --time-width: 75px;
+  --sticky-height: 40px;
+  --recherche-box-couleur: hsl(192, 10%, 90%);
+  --barre-nav:#FFF;
+  --option-button:rgb(48, 48, 248);
+  --option-button-hover:rgb(24, 24, 255);
+  --liste-periode-couleur:#d1d8f0;
+  --sidebar-color: #FFF;
+  --btn-dropdwon: black;
+  --fond-dropdown-menu:#FFF;
+  --fond-dropdown-menu-hover:#f1f1f1;
+
+  --primary-color: #695CFE;
+  --primary-color-light: #F6F5FF;
+  --toggle-color: #DDD;
+  --text-color: #6a6a6a; 
+  
+}
+
+
+li, a, button {
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  text-decoration: none; 
+}
+
+button {
+  border: 0;
+  background: var(--thead-bg);
+  color:#f1f1f1;
+}
+
+body{
+  background-color: var(--body-color) !important; /* Écraser le fond par défaut de bootstrap */
+}
+
+#page{
+    height: 100vh;
+    background: var(--bd-color);
+}
+
+/* ------- Barre de navigation ------- */
+#barre-nav {
+  position: relative;
+  background-color: var(--sidebar-color);
+  left: 5em;
+  height: 5em;
+  display: flex;
+  align-items: center;
+  width: calc(100% - 5em); /* 100% moins la largeur de la sidebar */
+  transition: background-color ease 0.3s, all ease 0.5s;
+}
+
+
+.cta {
+  height: 2.5em;
+  width: 2.5em;
+  position: absolute;
+  right:2.5em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--option-button);
+  border: 0;
+  border-radius: 100px;
+  transition: all 0.3s ease 0s;
+}
+
+
+.dropdown-button {
+  position: absolute;
+  color: var( --btn-dropdwon);
+  font-size: 60%;
+  right: 2.0em;
+  cursor:pointer;
+  transition: color ease 0.3s, all ease 0.5s;
+}
+
+/* Affiche le menu dropdown lorsqu'il est actif */
+.dropdown-menu.active {
+  display: block;
+  right:1.5em;
+  top:4em;
+  z-index: 1000;
+  border-radius: 5px;
+  background-color: var(--fond-dropdown-menu);
+  box-shadow:  2px 8px 16px 0px  rgba(0.5, 0.30, 0.30, 0.15);
+  transition: background-color ease 0.5s;
+}
+
+/* Style des éléments de la liste */
+.dropdown-menu li a {
+  display: flex;
+  align-items: center;
+  padding: 5px 15px;
+  color:black;
+  cursor: pointer;
+  text-decoration: none;  
+  font-size: 13.6px;
+}
+
+.dropdown-menu li #deconnection {
+  border-top: rgb(171, 171, 171) solid;
+  
+}
+
+.dropdown-menu li:hover {
+  background-color: var(--fond-dropdown-menu-hover);
+}
+
+/* ------- Fin Bouton dropdown-menu ------- */
+
+.cta:hover {
+  background-color: var(--option-button-hover);
+}
+
+/* ------- Fin Barre de navigation ------- */
+
+/* ------- Sidebar ------- */
+.sidebar{
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 16.5em;
+    background-color: var(--sidebar-color);
+    transition: background-color ease 0.3s;
+    padding: 20px 15px;
+    transition: all ease 0.5s;
+    z-index: 100;
+  
+}
+
+.sidebar.reduit{
+  width:5em;
+}
+
+.sidebar.reduit .text,
+.sidebar.reduit .switch,
+.sidebar.reduit .menu-bar .mode-luminosite .toggle-switch,
+.sidebar.reduit .recherche-box input {
+  opacity:0;
+}
+
+.sidebar.reduit .switch,
+.sidebar.reduit .menu-bar .mode-luminosite .toggle-switch{
+  position: absolute;
+  left:0em;
+}
+
+.sidebar.reduit .toggle{
+  position: absolute;
+  right:-0.6em;
+  z-index: 150;
+}
+
+
+.sidebar.reduit header .toggle{
+  transform: translateY(-50%);
+}
+
+
+body.mode-sombre .sidebar header .toggle{
+  transform: rotate(180deg);
+}
+
+
+
+.sidebar .image-text{
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+}
+
+.sidebar li{
+    height: 50px;
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.sidebar .nom-projet{
+  color: var(--text-color);
+}
+
+.sidebar li .icons,
+.sidebar li .text{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size:20px;
+    color: var(--text-color);
+    min-width: 50px;
+    transition: opacity ease 0.35s, color ease 0.2s;
+    opacity: 1;
+}
+
+.sidebar li a {
+    text-decoration: none;
+    height:100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    border-radius: 6px;
+    transition: background-color ease 0.3s;
+}
+
+.sidebar li a:hover {
+    background: var(--option-button);
+}
+
+.sidebar li a:hover .icons,
+.sidebar li a:hover .text{
+    color: var(--primary-color-light);
+}
+
+.sidebar .recherche-box{
+    background-color: var(--recherche-box-couleur);
+    border-radius: 6px;
+    width: 100;
+    cursor: pointer;
+    transition: background-color ease 0.3s, width ease 0.5s;
+}
+
+.recherche-box input{
+    height:100%;
+    width: 100%;
+    background-color: var(--recherche-box-couleur);
+    transition: background-color ease 0.3s, all ease 0.3s;
+    border-bottom-right-radius: 6px;
+    border-top-right-radius: 6px;
+    outline: none;
+    border: none;
+    opacity:1;
+}
+
+.sidebar header{
+    position: relative;
+
+}
+
+.sidebar .toggle{
+    position: absolute;
+    top: 2em;
+    right:-0.5em;
+    transform: translateY(-50%);
+    height: 25px;
+    width: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    border-radius: 50%;
+    background: var(--option-button);
+    font-size: 22px;
+    transition: background-color ease 0.3s, all ease 0.4s;
+    cursor:pointer;
+}
+
+.sidebar .toggle:hover{
+    background: var(--option-button-hover);
+}
+
+.sidebar .text{
+    font-size: 16px;
+    font-weight: 500;
+    transition: all ease 0.4s;
+    white-space: nowrap;  
+    overflow: hidden;     
+} 
+
+.sidebar .image{
+    min-width: 60px;
+    display: flex;
+}
+
+.sidebar .image img {
+    width: 40px;
+    border-radius: 6px;
+}
+
+.sidebar .menu-bar{
+    height: calc(100% - 3em);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.menu-bar .mode-luminosite{
+    position: relative;
+    border-radius: 6px;
+    background-color: var(--recherche-box-couleur);
+}
+
+.menu-bar .sous-menu{
+    border-top: var(--text-color) solid;
+}
+
+.menu-bar .mode-luminosite i{
+    position: absolute;
+}
+
+.menu-bar .mode-luminosite .moon-sun{
+    width: 3em;
+    display: flex;
+    align-items: center;
+}
+
+.menu-bar .mode-luminosite i.lune{
+    opacity: 0;
+}
+
+.menu-bar .mode-luminosite .toggle-switch {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 4.5em;
+   
+}
+
+.toggle-switch .switch{
+    position: relative;
+    height: 1.5em;
+    width: 3em;
+    border-radius: 25px;
+    background-color: #bfbfbf;
+    cursor:pointer;
+}
+
+.switch::before {
+    content: '';
+    position: absolute;
+    height: 15px;
+    width: 15px;
+    border-radius: 25px;
+    background-color: white;
+    top:50%;
+    left: 5px;
+    transform: translateY(-50%);
+    transition: all ease 0.3s ;
+}
+
+body.mode-sombre .switch::before{
+  left: 1.8em;
+  background-color: #333;
+}
+
+
+/* ------- Fin Sidebar ------- */
+
+
+/* ------- Mode sombre  ------- */
+
+body.mode-sombre{
+    --bd-color: #18191A;
+    --body-color:#242526;
+    --sidebar-color: #242526;
+    --primary-color: #3A3B3C;
+    --toggle-color: #FFF;
+    --text-color: #CCC;
+    --btn-dropdwon:#CCC;
+    --recherche-box-couleur:#3A3B3C;
+    --option-button:rgb(138, 138, 165);
+    --option-button-hover:rgb(87, 87, 105);
+    --barre-nav:rgb(64, 64, 64);
+    --fond-dropdown-menu:#efefef;
+    --fond-dropdown-menu-hover:rgb(204, 204, 229);
+  }
+
+body.mode-sombre .menu-bar .mode-luminosite i.soleil{
+    opacity: 0;
+}
+
+body.mode-sombre .menu-bar .mode-luminosite i.lune{
+  opacity: 100;
+}
+
+body.mode-sombre .sidebar header .toggle {
+  color: var(--text-color);
+}
+
+/* ------- Fin Mode sombre  ------- */
+
+/* -------Contenu relié au calendrier ------- */
+
+.contenu-calendrier-periode {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  gap:10.5em;
+  left: 5em;
+  height: 100%;
+  width: calc(100% - 5em);
+  background-color: var(--bd-color);
+  transition: all ease 0.5s;
+  z-index: -0; 
+}
+
+.liste-periode {
+  position: relative;
+  height: 90%;
+  width: 30%;
+  left:3em;
+  top: 2.5em;
+  background-color: var(--liste-periode-couleur);
+  border-radius: 5px;
+  box-shadow: 2px 2px 10px #becfe1;
+}
+
+.contenu-calendrier {
+  position: relative;
+  height: 90%;
+  width: 70%;
+  top: 2.5em;
+  right: 3em;
+  background-color: var(--liste-periode-couleur);
+  border-radius: 5px;
+  box-shadow: 2px 2px 10px #becfe1;
+}
+
+.contenu-calendrier-periode .liste-periode #btn-filtrer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 2.5em;
+  width: 5em;
+  margin-top:0.8em;
+  margin-left:1.5em;
+  background-color: var(--option-button);
+  border: 0;
+  border-radius: 100px;
+  transition: all 0.3s ease 0s;
+  cursor: pointer;
+  
+}
+
+.contenu-calendrier-periode .liste-periode #btn-creer-periode {
+  position: absolute;
+  right: 1.5em;
+  top: 0em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 2.5em;
+  width: 2.5em;
+  margin-top:0.8em;
+  margin-left:1.5em;
+  border-radius: 100px;
+  background-color: var(--option-button);
+  
+  transition: all 0.3s ease 0s;
+  cursor: pointer;
+}
+
+.contenu-calendrier-periode .liste-periode #btn-filtrer:hover,
+.contenu-calendrier-periode .liste-periode #btn-creer-periode:hover,
+.contenu-calendrier-periode .contenu-calendrier #btn-creer-evenement:hover {
+  background-color: var(--option-button-hover);
+}
+
+.contenu-calendrier-periode .contenu-calendrier .options {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 4em;
+  /* TEMPORAIRE À ENLEVER SI ON PRÉFÈRE */
+  background-color: #6aadf0;
+  border-radius: 5px;
+  /* ---------------- */ 
+  justify-content: space-between;
+  padding: 25px;
+}
+
+.contenu-calendrier-periode .contenu-calendrier #btn-creer-evenement {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 2.5em;
+  width: 2.5em;
+  border-radius: 100px;
+  background-color: var(--option-button);
+  transition: all 0.3s ease 0s;
+  cursor: pointer;
+}
+
+.contenu-calendrier-periode .contenu-calendrier .options .scroll-date {
+  display: flex;
+  background-color: #3673b0;
+  height: 2.5em;
+  width: 8em ;
+  border-radius: 15px;
+  align-items: center;
+  justify-content: space-around;  
+}
+
+#retour, #avancer{
+  font-size: 22px;
+  
+}
+
+.contenu-calendrier-periode .contenu-calendrier .options .format{
+  display: flex;
+  align-items: center;
+  height: 2.5em;
+  width: 30%;
+ 
+}
+
+#format-semaine, #format-mois {
+  height: 2.5em;
+  width: 100%;
+  border-radius: 25px;
+
+  align-items: center;
+  justify-content: center;
+  background-color: #3673b0;
+  cursor: pointer;
+}
+
+.format-style {
+  width: 8em;
+}
+
+/* -------Fin Contenu relié au calendrier ------- */

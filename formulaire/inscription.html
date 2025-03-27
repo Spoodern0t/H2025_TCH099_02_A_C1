@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../assets/styles/form-inscription.css" rel="stylesheet">
+    <title>Inscription</title>
+</head>
+<body>
+
+    <section class="page">
+        <div class="conteneur">
+            <div class="contenu">
+                
+                <div id="logo">
+                    <p>LOGO</p>
+                </div>
+                
+                <!-- Formulaire -->
+                <div class="form-conteneur">
+                    <form id="form-inscription">
+                        <h1>Créer votre compte dès maintenant !</h1>
+                        <p id="info">Remplissez les champs ci-dessous pour vous inscrire.</p>
+
+                        <!-- Nom d'utilisateur -->
+                        <div class="style-conteneur">
+                            <label for="nom-utilisateur">Nom d'utilisateur</label>
+                            <input type="text" name="nom-utilisateur" required>
+                        </div>
+
+                        <!-- Adresse courriel -->
+                        <div class="style-conteneur">
+                            <label for="adresse-courriel">Adresse courriel</label>
+                            <input type="email" name="adresse-courriel" required>
+                        </div>
+
+                        <!-- Mot de passe -->
+                        <div class="style-conteneur">
+                            <label for="mot-de-passe">Mot de passe</label>
+                            <input type="text" name="mot-de-passe" required>
+                        </div>
+                        
+                        <!-- Mot de passe confirmation-->
+                        <div class="style-conteneur">
+                            <label for="conf-mdp">Confirmer votre mot de passe</label>
+                            <input type="text" name="conf-mdp" required>
+                        </div>
+
+                        <!-- Submit button -->
+                        <button type="submit" class="btn btn-submit">Créer votre compte</button>
+
+                        <!-- Reset button -->
+                        <button type="reset" class="btn btn-reset">Recommencer</button>
+
+                        <!-- Inscription button -->
+                        <p class="inscription">Vous avez déjà un compte ?
+                            <a href="./connexion.html" role="button">Connectez-vous</a>
+                        </p>
+                    </form>
+                </div>
+
+                  <!-- Image -->
+                  <div class="image-conteneur">
+                    <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.svg"
+                        alt="Illustration" id="image-inscription">
+                  </div>
+
+            </div>
+        </div>
+    </section>
+
+</body>
+</html>

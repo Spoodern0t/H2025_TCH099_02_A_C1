@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connexion</title>
+    <link href="../assets/styles/form-connexion.css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <section class="page">
+        <div class="conteneur">
+            <div class="contenu">
+                
+                <!--TODO POUR DU STYLE PLUS TARD 
+                METTRE LE LOGO DANS LE COIN À GAUCHE (POS. ABSOLUE)
+                <img src="../image/—Pngtree—vector calendar icon_3782243.png" alt="calendrier" id="calendrier">
+                -->
+                <div id="logo">
+                    <p>LOGO</p>
+                </div>
+                
+                <!-- Formulaire -->
+                <div class="form-conteneur">
+
+               
+                    <form id="form-connexion">
+                        <h1>Bienvenue !</h1>
+                        <p id="info">Veuillez entrer vos informations</p>
+
+                        <!-- Adresse courriel -->
+                        <div class="style-conteneur">
+                            <label for="courriel">Adresse courriel</label>
+                            <input type="email" name="courriel" required>
+                        </div>
+
+                        <!-- Mot de passe -->
+                        <div class="style-conteneur">
+                            <label for="mot-de-passe">Mot de passe</label>
+                            <input type="password" name="mot-de-passe" required>
+                        </div>
+
+                        <!-- Options -->
+                        <div class="form-options">
+                            <label for="souvenir"> 
+                                <input type="checkbox" name="souvenir"> Souviens-toi de moi
+                            </label>
+                            <a href="#">Mot de passe oublié ?</a>
+                        </div>
+
+                        <!-- Submit button -->
+                        <button type="submit" class="btn btn-connexion">Se connecter</button>
+
+            
+                        <div class="divider"><span>OU</span></div>
+
+                        <!-- Inscription button -->
+                        <p class="inscription-text">Vous n'avez pas de compte ?</p>
+                        <a class="btn btn-inscription inscription" href="./inscription.html" role="button">S'inscrire</a>
+                        
+                    </form>
+
+                </div>
+
+                <!-- Image -->
+                <div class="image-conteneur">
+                    <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.svg"
+                        alt="Illustration" id="image-fille">
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

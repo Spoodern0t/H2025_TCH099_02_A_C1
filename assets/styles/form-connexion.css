@@ -1,0 +1,203 @@
+/* Styles du formulaire */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #ffffff;
+    color: #000000;
+    margin: 5px;
+}
+
+/* Section principale */
+.page {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+
+/* Conteneur principal */
+.conteneur {
+    width: 100%;
+    height: 95%; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+h1 {
+    margin: 0; /* Retirer la marge par défaut */
+    padding-bottom: 5px; 
+}
+
+/* Style du paragraphe */
+#info {
+    color: #a4a4a4;
+    margin-top: 0em; 
+    margin-bottom: 1.5em;
+}
+
+/* Contenu (Formulaire + Images) */
+.contenu {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%; 
+}
+
+/* Image */
+.image-conteneur {
+    width: 50%; /* 50% à gauche */
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    background-color: #b7cdd3;
+}
+
+#image-fille {
+    width: 100%;
+}
+
+
+/* Formulaire */
+.form-conteneur {
+    width: 50%; /* Formulaire à droite */
+    padding: 10px;
+    display: flex;
+    justify-content: center; 
+    background-color: #ffffff;
+    
+}
+
+#form-connexion{
+    width: 55%;
+}
+
+/* Champs de saisie */
+.style-conteneur {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+    
+}
+
+.style-conteneur label {
+    margin-bottom: 20px;
+}
+
+.style-conteneur input {
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #ffffff;
+    border: #a4a4a4 solid 1px;  
+}
+
+/* Options */
+.form-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    gap: 15px;
+}
+
+.form-options a {
+    color: #4da8da;
+    text-decoration: none;
+}
+
+.form-options a:hover {
+    text-decoration: underline;
+}
+
+/* Boutons style */
+.btn {
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.btn-connexion {
+    background-color: #4da8da;
+    color: white;
+    width: 100%;
+}
+
+.btn-connexion:hover {
+    transition: all 0.2s ease 0s;
+    background-color: #3a8dbd;
+}
+
+.btn-inscription {
+    background-color: #777;
+    color: white;
+    text-decoration: none;
+}
+
+.btn-inscription:hover {
+    transition: all 0.2s ease 0s;
+    background-color: #666;
+}
+
+/* Séparateur */
+.divider {
+    text-align: center;
+    margin: 15px 0;
+    font-weight: bold;
+}
+
+.divider span {
+    padding: 0 10px;
+}
+
+/* Inscription */
+.inscription-text {
+    text-align: center;
+}
+
+.inscription {
+    display: block;
+    text-align: center;
+}
+
+
+
+/* RESPONSIVE : Ajustement pour les petits écrans (Moyen de faire que l'écran devienne vertical si la page est réduite 
+    (À REVOIR À LA FIN DU PROJET)*/
+    @media screen and (max-width: 600px) {
+        .contenu {
+            flex-direction: column-reverse;
+            height: 100%;
+        }
+    
+        /* Formulaire */
+        .form-conteneur {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #ffffff;
+        }
+    
+        .image-conteneur {
+            width: 60%;
+            height: 100%;
+        }
+    
+        
+    }
+
+#logo{
+    position: absolute;
+    top:0;
+    left:0;
+}
