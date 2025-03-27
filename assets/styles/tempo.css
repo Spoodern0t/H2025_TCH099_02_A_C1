@@ -1,0 +1,226 @@
+
+/* ------- Définition de constante pour les thèmes de couleur ------- */
+:root {
+    --thead-color: rgba(0,136,169,1);
+    --body-color:#FFF;
+    --bd-color: #E4E9F7;
+    --time-color: hsl(210, 5%, 70%);
+    --time-width: 75px;
+    --sticky-height: 40px;
+    --recherche-box-couleur: hsl(192, 10%, 90%);
+    --barre-nav:#FFF;
+    --option-button:rgb(48, 48, 248);
+    --option-button-hover:rgb(24, 24, 255);
+    --liste-periode-couleur:#d1d8f0;
+    --sidebar-color: #FFF;
+    --btn-dropdwon: black;
+    --fond-dropdown-menu:#FFF;
+    --fond-dropdown-menu-hover:#f1f1f1;
+  
+    --primary-color: #695CFE;
+    --primary-color-light: #F6F5FF;
+    --toggle-color: #DDD;
+    --text-color: #6a6a6a; 
+    
+  }
+  
+  
+li, a, button {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    text-decoration: none; 
+}
+  
+  button {
+    border: 0;
+    background: var(--thead-bg);
+    color:#f1f1f1;
+  }
+  
+  body{
+    background-color: var(--body-color) !important; /* Écraser le fond par défaut de bootstrap */
+  }
+
+  #page{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background: var(--bd-color);
+  }
+
+.pop-up-periode-limite {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 60%;
+    min-width: 20%;
+    max-width: 20%;
+    border-radius: 10px;
+    border: solid rgb(106, 104, 104) 2px;
+    margin: 2em 0;
+    background-color: #a2baf8;
+    
+}
+
+.pop-up-periode-limite legend {
+    font-size:1.25em;
+    margin: 1em;
+
+}
+
+.pop-up-periode-limite #btn-quit {
+    position: absolute;
+    right:23.5em;
+    top:7.4em;
+    display: flex;
+    background-color: var(--option-button);
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    border-radius: 5px;
+    padding: 0.35%;
+    cursor:pointer;
+    color: white;
+    font-size: 25px;
+}
+
+.pop-up-periode-limite #btn-quit:hover{
+    transform: scale(1.05);
+    background-color: var(--option-button-hover);
+}
+
+.pop-up-periode-limite .type {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    left: 34.23em;
+    top: 13em;
+    gap: 0.5em;
+    width: 1em; /* Rétréci par défaut */
+    overflow: hidden;
+    transition: width 1.0s ease, opacity 0.3s ease, left 1.0s ease;
+    transform-origin: left;
+    -webkit-mask-image: linear-gradient(to right, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 100%);
+    mask-image: linear-gradient(to right, rgba(0, 0, 0, 1) 100%, rgba(0, 0, 0, 0) 100%);
+}
+
+/* Effet au survol */
+.pop-up-periode-limite .type:hover {
+    left: 28.3em;
+    width: 6.92em; 
+    overflow: visible;
+    -webkit-mask-image: linear-gradient(to right, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 100%);
+    mask-image: linear-gradient(to right, rgba(0, 0, 0, 1) 100%, rgba(0, 0, 0, 0) 100%);
+}
+
+/* Boutons de type */
+.pop-up-periode-limite .type button  {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    color: black;
+    background-color: #5590d8;
+    padding-right: 20px;
+    padding-left: 10px;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    width: 100%;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+
+/* Texte des boutons caché avant le survol */
+.pop-up-periode-limite .type button span {
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+/* Affiche le texte au survol */
+.pop-up-periode-limite .type:hover button span {
+    opacity: 1;
+}
+
+/* Changement de couleur au survol du bouton */
+.pop-up-periode-limite .type button:hover {
+    background-color: red;
+    overflow: visible;
+    cursor: pointer;
+}
+
+
+.form-contenu {
+    display: flex;
+    flex-direction: column;
+}
+
+.pop-up-periode-limite .form-contenu label,
+.pop-up-periode-limite .form-contenu .periode {
+    margin-top:10px;
+    margin-bottom: 5px;
+}
+
+.pop-up-periode-limite .form-contenu .periode {
+    display: flex;
+    align-items: center; 
+    gap: 0.5em; 
+}
+
+.pop-up-periode-limite .form-contenu .periode input {
+    margin:5px 0 0 0;
+    cursor:pointer;
+}
+
+
+.pop-up-periode-limite .form-contenu .input{
+    padding: 0.5em;
+    border-radius: 5px;
+    background-color: #ffffff;
+    border: #c3c3c3 solid 1px;  
+    min-width: 15em;
+    max-width: 20em;
+    max-height: 2em;
+}
+.pop-up-periode-limite .form-contenu textarea{
+    padding: 0.5em;
+    border-radius: 5px;
+    background-color: #ffffff;
+    border: #c3c3c3 solid 1px;  
+    min-width: 19em;
+    max-width: 20em;
+    min-height: 3em;
+    max-height: 5em;
+}
+
+.pop-up-periode-limite .form-contenu .date {
+    padding: 1.5em;
+    border-radius: 5px;
+    background-color: #ffffff;
+    border: #c3c3c3 solid 1px;  
+}
+
+.pop-up-periode-limite .boutons {
+    display: flex;
+    padding: 1em;
+    gap:1.5em;
+    justify-content: center;
+}
+
+.pop-up-periode-limite .boutons .btn-save{
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    font-size: 16px;
+    margin-bottom: 10px;
+    width:100%;
+    background-color: var(--option-button);
+    transition: transform 0.3s ease;
+    
+}
+
+.pop-up-periode-limite .boutons .btn-save:hover {
+    background-color: var(--option-button-hover);
+    transform: scale(1.05);
+}
