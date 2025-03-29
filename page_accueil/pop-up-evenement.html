@@ -8,15 +8,15 @@
     <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
 </head>
 <body>
-    <section id="page">
+    <section id="page-pop-up">
         <fieldset class="pop-up-periode-limite">
-            <legend>Période</legend>
+            <legend>Événement</legend>
 
             <div class="type">
-                <button><span>Calendrier</span></button>
-                <button><span>Événement</span></button>
-                <button><span>Periode</span></button>
-                <button><span>Limite</span></button>
+                <button class="btn-creer-calendrier"><span>Calendrier</span></button>
+                <button class="btn-creer-evenement"><span>Événement</span></button>
+                <button class="btn-creer-periode"><span>Periode</span></button>
+                <button class="btn-creer-limite"><span>Limite</span></button>
             </div>
 
             <div> <span id="btn-quit"><i class='bx bx-x'></i></span> </div>
@@ -29,26 +29,8 @@
                 <label for="auteur">Auteur</label>
                 <input type="text" name="auteur" value="$nom" class="input" disabled>
 
-                <div class="periode">
-                    <label for="periode">Période</label>
-                    <input type="checkbox" name="reccurence-periode" value="$reccurence">
-                </div>
-                
-                <div class="date">
-                    <div id="debut">
-                        
-                    </div>
-
-                    <div id="fin">
-
-                    </div>
-
-                    <label for="reccurence-periode"></label>
-                  
-                </div>
-
-                <label for="evenement">Événement</label>
-                <input name="evenement" class="input">
+                <label for="categorie">Catégorie</label>
+                <input type="color" name="categorie" class="input">
 
                 <label for="evenement">Description</label>
                 <textarea name="evenement"></textarea>
@@ -61,6 +43,7 @@
 
     </div>
     </section>
+    
 </body>
 </html>
 

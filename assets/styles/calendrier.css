@@ -8,6 +8,7 @@
   --time-width: 75px;
   --sticky-height: 40px;
   --recherche-box-couleur: hsl(192, 10%, 90%);
+  --recherche-box-couleur-hover:hsl(0, 0%, 80%);
   --barre-nav:#FFF;
   --option-button:rgb(48, 48, 248);
   --option-button-hover:rgb(24, 24, 255);
@@ -16,17 +17,16 @@
   --btn-dropdwon: black;
   --fond-dropdown-menu:#FFF;
   --fond-dropdown-menu-hover:#f1f1f1;
+  --overlay-couleur: rgba(70, 70, 70, 0.5);
 
   --primary-color: #695CFE;
   --primary-color-light: #F6F5FF;
   --toggle-color: #DDD;
-  --text-color: #6a6a6a; 
-  
+  --text-color: #404040;
 }
 
 
 li, a, button {
-  font-family: Arial, Helvetica, sans-serif;
   font-weight: 500;
   font-size: 16px;
   text-decoration: none; 
@@ -47,82 +47,6 @@ body{
     background: var(--bd-color);
 }
 
-/* ------- Barre de navigation ------- */
-#barre-nav {
-  position: relative;
-  background-color: var(--sidebar-color);
-  left: 5em;
-  height: 5em;
-  display: flex;
-  align-items: center;
-  width: calc(100% - 5em); /* 100% moins la largeur de la sidebar */
-  transition: background-color ease 0.3s, all ease 0.5s;
-}
-
-
-.cta {
-  height: 2.5em;
-  width: 2.5em;
-  position: absolute;
-  right:2.5em;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: var(--option-button);
-  border: 0;
-  border-radius: 100px;
-  transition: all 0.3s ease 0s;
-}
-
-
-.dropdown-button {
-  position: absolute;
-  color: var( --btn-dropdwon);
-  font-size: 60%;
-  right: 2.0em;
-  cursor:pointer;
-  transition: color ease 0.3s, all ease 0.5s;
-}
-
-/* Affiche le menu dropdown lorsqu'il est actif */
-.dropdown-menu.active {
-  display: block;
-  right:1.5em;
-  top:4em;
-  z-index: 1000;
-  border-radius: 5px;
-  background-color: var(--fond-dropdown-menu);
-  box-shadow:  2px 8px 16px 0px  rgba(0.5, 0.30, 0.30, 0.15);
-  transition: background-color ease 0.5s;
-}
-
-/* Style des éléments de la liste */
-.dropdown-menu li a {
-  display: flex;
-  align-items: center;
-  padding: 5px 15px;
-  color:black;
-  cursor: pointer;
-  text-decoration: none;  
-  font-size: 13.6px;
-}
-
-.dropdown-menu li #deconnection {
-  border-top: rgb(171, 171, 171) solid;
-  
-}
-
-.dropdown-menu li:hover {
-  background-color: var(--fond-dropdown-menu-hover);
-}
-
-/* ------- Fin Bouton dropdown-menu ------- */
-
-.cta:hover {
-  background-color: var(--option-button-hover);
-}
-
-/* ------- Fin Barre de navigation ------- */
 
 /* ------- Sidebar ------- */
 .sidebar{
@@ -287,6 +211,52 @@ body.mode-sombre .sidebar header .toggle{
     border-radius: 6px;
 }
 
+/* ------- Bouton dropdown-menu ------- */
+
+.dropdown-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 2.5em;
+  width: 2.5em;
+  background-color: var(--option-button);
+  border: 0;
+  border-radius: 100px;
+  padding: 5px;
+  transition: all 0.3s ease 0s;
+}
+
+
+
+/* Affiche le menu dropdown lorsqu'il est actif */
+.dropdown-menu.active {
+  display: block;
+  border-radius: 5px;
+  background-color: var(--fond-dropdown-menu);
+  box-shadow:  2px 8px 16px 0px  rgba(0.5, 0.30, 0.30, 0.15);
+  transition: background-color ease 0.5s;
+}
+
+.dropdown-menu li a {
+  display: flex;
+  align-items: center;
+  padding: 5px 15px;
+  color:black;
+  cursor: pointer;
+  text-decoration: none;  
+  font-size: 13.6px;
+}
+
+.dropdown-menu li #deconnection {
+  border-top: rgb(171, 171, 171) solid;
+  
+}
+
+.dropdown-menu li:hover {
+  background-color: var(--fond-dropdown-menu-hover);
+}
+/* ------- Fin Bouton dropdown-menu ------- */
+
 .sidebar .menu-bar{
     height: calc(100% - 3em);
     display: flex;
@@ -442,7 +412,7 @@ body.mode-sombre .sidebar header .toggle {
   
 }
 
-.contenu-calendrier-periode .liste-periode #btn-creer-periode {
+.contenu-calendrier-periode .liste-periode .btn-creer-periode {
   position: absolute;
   right: 1.5em;
   top: 0em;
@@ -461,7 +431,7 @@ body.mode-sombre .sidebar header .toggle {
 }
 
 .contenu-calendrier-periode .liste-periode #btn-filtrer:hover,
-.contenu-calendrier-periode .liste-periode #btn-creer-periode:hover,
+.contenu-calendrier-periode .liste-periode .btn-creer-periode:hover,
 .contenu-calendrier-periode .contenu-calendrier #btn-creer-evenement:hover {
   background-color: var(--option-button-hover);
 }
@@ -477,6 +447,7 @@ body.mode-sombre .sidebar header .toggle {
   /* ---------------- */ 
   justify-content: space-between;
   padding: 25px;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .contenu-calendrier-periode .contenu-calendrier #btn-creer-evenement {
@@ -500,10 +471,9 @@ body.mode-sombre .sidebar header .toggle {
   align-items: center;
   justify-content: space-around;  
 }
-
-#retour, #avancer{
+.contenu-calendrier-periode .contenu-calendrier .options .scroll-date button{
+  display: flex;
   font-size: 22px;
-  
 }
 
 .contenu-calendrier-periode .contenu-calendrier .options .format{
@@ -528,5 +498,76 @@ body.mode-sombre .sidebar header .toggle {
 .format-style {
   width: 8em;
 }
+
+.menu-quitter {
+  display: none; /* Caché par défaut */
+  flex-direction: column;
+  justify-content: space-between;
+  position: fixed;
+  height: 10em;
+  width: 15em;
+  top: 20em;
+  left: 42vw;
+  background-color: var(--body-color);
+  border-radius: 10px;
+  color: var(--text-color);
+  padding:20px;
+  border: var(--primary-color-light) 2px solid;
+  box-shadow: 1px 1px 1px  var(--primary-color-light);
+  z-index: 201;
+}
+
+
+.menu-quitter .contenu-btn {
+  display: flex;
+  justify-content: space-between;
+  padding-left:15px;
+  padding-right:15px;
+  border-radius: 10px;
+  font-size: 20px;
+
+}
+
+.menu-quitter .contenu-btn button {
+  padding-left:20px;
+  padding-right:20px;
+  border-radius: 10px;
+  font-size: 20px;
+  background-color: var(--recherche-box-couleur);
+  color: var(--text-color);
+  transition: all ease 0.3s;
+}
+
+.menu-quitter .contenu-btn #btn-quitter {
+  background-color: var(--option-button);
+  color:white;
+}
+
+
+.menu-quitter .contenu-btn #btn-quitter:hover {
+  background-color: var(--option-button-hover);
+
+}
+
+.menu-quitter .contenu-btn #btn-quitter:hover,
+.menu-quitter .contenu-btn #btn-annuler:hover {
+  transform: scale(1.1);
+}
+
+.menu-quitter .contenu-btn #btn-annuler:hover {
+  background-color: var(--recherche-box-couleur-hover);
+}
+
+#overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--overlay-couleur);
+  display: none; /* Caché par défaut */
+  z-index: 200;
+}
+
 
 /* -------Fin Contenu relié au calendrier ------- */
