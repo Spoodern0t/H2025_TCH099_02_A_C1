@@ -6,7 +6,8 @@ const contenu = document.querySelector(".contenu-calendrier-periode");
 const btn_dropdown = document.querySelector(".dropdown-button");
 const menuDropdown = document.querySelector(".dropdown-menu");
 const boxRecherche = document.querySelector(".recherche-box");
-const btnPeriode   = document.querySelector(".btn-creer-periode");
+const btnPeriode   = document.querySelector("#btn-creer-periode");
+const btnEvenement = document.querySelector("#btn-creer-evenement");
 const btnAfficherLimite = document.querySelector(".btn-creer-limite");
 const btnsAnnuler   = document.querySelector("#btn-quit");
 const overlay = document.getElementById("overlay");
@@ -96,11 +97,37 @@ btnAnnuler.addEventListener("click", () => {
 });
 
 
+
 btnPeriode.addEventListener("click", () => {
     fetch("pop-up-periode.html")
       .then(promesse => {
         if (!(promesse.ok)) { //Reponse.ok est du statut 200 à 299
           throw new Error("Erreur lors du chargement du pop-up période."); //Si response.ok est false (statut 404-500)
+
+        }
+        return promesse.text();
+      })
+
+      .then(promesse => {
+        afficherOverlay();
+        document.getElementById("conteneur-pop-up").innerHTML = promesse;
+
+        const btnAnnuler = document.querySelector("#btn-quit"); 
+        if (btnAnnuler) {
+            btnAnnuler.addEventListener("click", () => {
+            document.querySelector("#conteneur-pop-up").innerHTML = "";
+            cacherOverlay();
+        });
+      }
+      })
+      .catch(error => console.error("Erreur:", error));
+});
+
+btnEvenement.addEventListener("click", () => {
+    fetch("pop-up-evenement.html")
+      .then(promesse => {
+        if (!(promesse.ok)) { //Reponse.ok est du statut 200 à 299
+          throw new Error("Erreur lors du chargement du pop-up événement."); //Si response.ok est false (statut 404-500)
 
         }
         return promesse.text();

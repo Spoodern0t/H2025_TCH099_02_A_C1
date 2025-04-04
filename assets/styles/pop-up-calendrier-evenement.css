@@ -1,20 +1,18 @@
 
 /* ------- Définition de constante pour les thèmes de couleur ------- */
 :root {
-    --primary-color: #FFEBD0;
     --body-color:#FFF;
     --bd-color: #E4E9F7;
+    --primary-color: #FFEBD0;
     --fond-dropdown-menu:#FFF;
     --fond-dropdown-menu-hover:#f1f1f1;
     --primary-color-light: #F6F5FF;
     --toggle-color: #DDD;
-    --text-color: #363636;  
-    --legend-color:#363636;
+    --text-color: #363636; 
+    --label-color:#363636;
     --legend-color:#363636;
     --type-color:#f0cda0;
-  }
-
-
+}
 
 body{
     background-color: var(--body-color) !important; /* Écraser le fond par défaut de bootstrap */
@@ -36,7 +34,7 @@ body{
     justify-content: center;
     top:10%;
     right: 38%;
-    height: 75%;
+    height: 60%;
     min-width: 25%;
     max-width: 25%;
     border-radius: 10px;
@@ -47,13 +45,13 @@ body{
 }
 
 .pop-up-periode-limite legend {
+    font-family: 'Times New Roman', Times, serif;
+    color: var(--legend-color);
     padding: 0.5em;
     font-size:1.5em;
     margin: 1em;
     float: none;
     width: auto;
-    font-family: 'Times New Roman', Times, serif;
-    color: var(--legend-color);
 }
 
 .pop-up-periode-limite #btn-quit {
@@ -141,7 +139,8 @@ body{
 }
 
 .pop-up-periode-limite .form-contenu label,
-.pop-up-periode-limite .form-contenu .periode {
+.pop-up-periode-limite .form-contenu .periode,
+.pop-up-periode-limite .form-contenu  .content-categorie {
     color: var(--label-color);
     margin-top:10px;
     font-family: 'Times New Roman', Times, serif;
@@ -155,24 +154,36 @@ body{
 }
 
 .pop-up-periode-limite .form-contenu .periode input {
-    color: var(--text-color);
     margin:5px 0 0 0;
     cursor:pointer;
 }
 
 
 .pop-up-periode-limite .form-contenu .input{
-    color: var(--text-color);
     padding: 0.2em;
     border-radius: 5px;
     background-color: #ffffff;
     border: #c3c3c3 solid 1px;  
     min-width: 15em;
     max-width: 20em;
-    
-}
-.pop-up-periode-limite .form-contenu textarea{
     color: var(--text-color);
+}
+
+.pop-up-periode-limite .form-contenu .content-categorie{
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+}
+
+.pop-up-periode-limite .form-contenu .content-categorie #code-couleur {
+    width: 1.5em;
+    height: 1.5em;
+    margin-top: 0.5em;
+}
+
+
+
+.pop-up-periode-limite .form-contenu textarea{
     padding: 0.5em;
     border-radius: 5px;
     background-color: #ffffff;
@@ -181,6 +192,7 @@ body{
     max-width: 20em;
     min-height: 3em;
     max-height: 5em;
+    color: var(--text-color);
 }
 
 .pop-up-periode-limite .form-contenu .date {

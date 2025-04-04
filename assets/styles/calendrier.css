@@ -1,28 +1,30 @@
 
 /* ------- Définition de constante pour les thèmes de couleur ------- */
 :root {
-  --thead-color: rgba(0,136,169,1);
-  --body-color:#FFF;
-  --bd-color: #E4E9F7;
-  --time-color: hsl(210, 5%, 70%);
-  --time-width: 75px;
-  --sticky-height: 40px;
   --recherche-box-couleur: hsl(192, 10%, 90%);
   --recherche-box-couleur-hover:hsl(0, 0%, 80%);
   --barre-nav:#FFF;
-  --option-button:rgb(48, 48, 248);
-  --option-button-hover:rgb(24, 24, 255);
-  --liste-periode-couleur:#d1d8f0;
+  --option-button:#278783;
+  --option-button-hover:rgb(17, 112, 107);
+  --contenu-calendrier-periode:#fde3c1;
   --sidebar-color: #FFF;
   --btn-dropdwon: black;
   --fond-dropdown-menu:#FFF;
   --fond-dropdown-menu-hover:#f1f1f1;
   --overlay-couleur: rgba(70, 70, 70, 0.5);
+  --box-shadow-couleur: 2px 2px 10px #f6dec0;
+  --barre-nav-color:#fdd39b;
 
-  --primary-color: #695CFE;
-  --primary-color-light: #F6F5FF;
+  --body-color:#FFF;
+  --primary-color: #FFEBD0;
+  --primary-color-light: #fff7ec;
   --toggle-color: #DDD;
   --text-color: #404040;
+
+  --transition-03 : all 0.3s ease;
+  --transition-04 : all 0.4s ease;
+  --transition-05 : all 0.5s ease;
+
 }
 
 
@@ -39,7 +41,7 @@ button {
 }
 
 body{
-  background-color: var(--body-color) !important; /* Écraser le fond par défaut de bootstrap */
+  background-color: var(--primary-color) !important; /* Écraser le fond par défaut de bootstrap */
 }
 
 #page{
@@ -56,9 +58,8 @@ body{
     height: 100%;
     width: 16.5em;
     background-color: var(--sidebar-color);
-    transition: background-color ease 0.3s;
+    transition: var(--transition-05);
     padding: 20px 15px;
-    transition: all ease 0.5s;
     z-index: 100;
   
 }
@@ -123,18 +124,19 @@ body.mode-sombre .sidebar header .toggle{
     font-size:20px;
     color: var(--text-color);
     min-width: 50px;
-    transition: opacity ease 0.35s, color ease 0.2s;
-    opacity: 1;
+    transition: opacity ease 0.3s, color ease 0.2s;
 }
 
-.sidebar li a {
+
+
+.sidebar li a{
     text-decoration: none;
     height:100%;
     width: 100%;
     display: flex;
     align-items: center;
     border-radius: 6px;
-    transition: background-color ease 0.3s;
+    transition: var(--transition-03);
 }
 
 .sidebar li a:hover {
@@ -158,7 +160,7 @@ body.mode-sombre .sidebar header .toggle{
     height:100%;
     width: 100%;
     background-color: var(--recherche-box-couleur);
-    transition: background-color ease 0.3s, all ease 0.3s;
+    transition: var(--transition-03);
     border-bottom-right-radius: 6px;
     border-top-right-radius: 6px;
     outline: none;
@@ -196,19 +198,35 @@ body.mode-sombre .sidebar header .toggle{
 .sidebar .text{
     font-size: 16px;
     font-weight: 500;
-    transition: all ease 0.4s;
+    transition: var(--transition-04);
     white-space: nowrap;  
     overflow: hidden;     
 } 
 
-.sidebar .image{
-    min-width: 60px;
-    display: flex;
+.sidebar .logo img {
+    width:4.5em;
+    border-radius: 6px;
+    position: relative;
+    right:0.6em
 }
 
-.sidebar .image img {
-    width: 40px;
-    border-radius: 6px;
+.sidebar .sous-menu .compte {
+  display: flex;
+  align-items: center;
+  color: var(--text-color);
+  transition: opacity ease 0.3s, color ease 0.2s;
+}
+.sidebar .sous-menu .compte .dropdown-button {
+  position: relative;
+  left:0.35em;
+}
+.sidebar .sous-menu .compte span {
+  margin-left: 0.5em;
+  font-size: 20px;
+}
+
+.sidebar .sous-menu #log-out {
+  position: relative;
 }
 
 /* ------- Bouton dropdown-menu ------- */
@@ -223,7 +241,7 @@ body.mode-sombre .sidebar header .toggle{
   border: 0;
   border-radius: 100px;
   padding: 5px;
-  transition: all 0.3s ease 0s;
+  transition: var(--transition-03);
 }
 
 
@@ -233,8 +251,6 @@ body.mode-sombre .sidebar header .toggle{
   display: block;
   border-radius: 5px;
   background-color: var(--fond-dropdown-menu);
-  box-shadow:  2px 8px 16px 0px  rgba(0.5, 0.30, 0.30, 0.15);
-  transition: background-color ease 0.5s;
 }
 
 .dropdown-menu li a {
@@ -272,6 +288,8 @@ body.mode-sombre .sidebar header .toggle{
 
 .menu-bar .sous-menu{
     border-top: var(--text-color) solid;
+    margin-bottom: 1em;
+    padding-top: 10px; /* Ajoute de l'espace sous la bordure */
 }
 
 .menu-bar .mode-luminosite i{
@@ -315,7 +333,7 @@ body.mode-sombre .sidebar header .toggle{
     top:50%;
     left: 5px;
     transform: translateY(-50%);
-    transition: all ease 0.3s ;
+    transition: var(--transition-03);
 }
 
 body.mode-sombre .switch::before{
@@ -330,19 +348,25 @@ body.mode-sombre .switch::before{
 /* ------- Mode sombre  ------- */
 
 body.mode-sombre{
-    --bd-color: #18191A;
     --body-color:#242526;
     --sidebar-color: #242526;
-    --primary-color: #3A3B3C;
+    --primary-color: #3F403B;
     --toggle-color: #FFF;
-    --text-color: #CCC;
+    --contenu-calendrier-periode:#6d665e;
+    --legend-color: #CCC;
+    --text-color:#CCC;
+    --box-shadow-couleur: 2px 2px 10px #655e55;
     --btn-dropdwon:#CCC;
     --recherche-box-couleur:#3A3B3C;
     --option-button:rgb(138, 138, 165);
     --option-button-hover:rgb(87, 87, 105);
     --barre-nav:rgb(64, 64, 64);
+    --primary-color-light: #4f4d49;
     --fond-dropdown-menu:#efefef;
-    --fond-dropdown-menu-hover:rgb(204, 204, 229);
+    --fond-dropdown-menu-hover:#181818;
+    --barre-nav-color:#3f3930;
+    --type-color:#312d27; 
+    --label-color:#f5f2f2;
   }
 
 body.mode-sombre .menu-bar .mode-luminosite i.soleil{
@@ -369,9 +393,8 @@ body.mode-sombre .sidebar header .toggle {
   left: 5em;
   height: 100%;
   width: calc(100% - 5em);
-  background-color: var(--bd-color);
-  transition: all ease 0.5s;
-  z-index: -0; 
+  background-color: var(--primary-color);
+  transition: var(--transition-05);
 }
 
 .liste-periode {
@@ -380,9 +403,12 @@ body.mode-sombre .sidebar header .toggle {
   width: 30%;
   left:3em;
   top: 2.5em;
-  background-color: var(--liste-periode-couleur);
+  background-color: var(--contenu-calendrier-periode);
   border-radius: 5px;
-  box-shadow: 2px 2px 10px #becfe1;
+  box-shadow: var(--box-shadow-couleur);
+  display: flex;
+  flex-direction: column;
+
 }
 
 .contenu-calendrier {
@@ -391,9 +417,13 @@ body.mode-sombre .sidebar header .toggle {
   width: 70%;
   top: 2.5em;
   right: 3em;
-  background-color: var(--liste-periode-couleur);
+  background-color: var(--contenu-calendrier-periode);
   border-radius: 5px;
-  box-shadow: 2px 2px 10px #becfe1;
+  box-shadow: var(--box-shadow-couleur);
+}
+
+.contenu-calendrier-periode .liste-periode .barre-nav {
+  margin-bottom: 2em;
 }
 
 .contenu-calendrier-periode .liste-periode #btn-filtrer {
@@ -402,17 +432,14 @@ body.mode-sombre .sidebar header .toggle {
   justify-content: center;
   height: 2.5em;
   width: 5em;
-  margin-top:0.8em;
-  margin-left:1.5em;
   background-color: var(--option-button);
-  border: 0;
   border-radius: 100px;
-  transition: all 0.3s ease 0s;
+  transition: var(--transition-03);
   cursor: pointer;
-  
+
 }
 
-.contenu-calendrier-periode .liste-periode .btn-creer-periode {
+.contenu-calendrier-periode .liste-periode #btn-creer-periode {
   position: absolute;
   right: 1.5em;
   top: 0em;
@@ -426,25 +453,75 @@ body.mode-sombre .sidebar header .toggle {
   border-radius: 100px;
   background-color: var(--option-button);
   
-  transition: all 0.3s ease 0s;
+  transition: var(--transition-03);
   cursor: pointer;
 }
 
 .contenu-calendrier-periode .liste-periode #btn-filtrer:hover,
-.contenu-calendrier-periode .liste-periode .btn-creer-periode:hover,
+.contenu-calendrier-periode .liste-periode #btn-creer-periode:hover,
 .contenu-calendrier-periode .contenu-calendrier #btn-creer-evenement:hover {
   background-color: var(--option-button-hover);
 }
 
-.contenu-calendrier-periode .contenu-calendrier .options {
+.contenu-calendrier-periode .liste-periode .titre {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  margin-left: 1em;
+  margin-right: 1em;
+  margin-bottom: 1em;
+  color: var(--text-color);
+}
+
+.contenu-calendrier-periode .liste-periode .titre #sous-titre {
+  color: rgb(123, 118, 109);
+}
+
+
+.contenu-calendrier-periode .liste-periode .contenu-periode{
+  display: flex;
+  align-items: center;
+  height: 4.5em;
+  background-color: #f0b466;
+  margin-bottom:2em;
+  margin-left: 1em;
+  margin-right: 1em;
+  border-radius: 15px;
+  padding:0.5em;
+  gap:2em;
+}
+
+.contenu-calendrier-periode .liste-periode .contenu-periode #categorie-image {
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #278783;
+  border-radius: 15px;
+  width: 3.5em;
+  height: 3.5em;
+}
+
+
+.contenu-calendrier-periode .liste-periode .contenu-periode #categorie-image img {
+  margin-left: auto;
+  height: 3em;
+  width: 3em;
+}
+
+.contenu-calendrier-periode .liste-periode .contenu-periode .description {
+  display: flex;
+  flex-direction: column;
+  font-size: small;
+  gap: 0.5em;
+  width: fit-content;
+}
+
+
+.contenu-calendrier-periode .contenu-calendrier .barre-nav,
+.contenu-calendrier-periode .liste-periode .barre-nav {
+  display: flex;
   align-items: center;
   height: 4em;
-  /* TEMPORAIRE À ENLEVER SI ON PRÉFÈRE */
-  background-color: #6aadf0;
-  border-radius: 5px;
-  /* ---------------- */ 
+  background-color: var(--barre-nav-color);
   justify-content: space-between;
   padding: 25px;
   font-family: Arial, Helvetica, sans-serif;
@@ -458,25 +535,25 @@ body.mode-sombre .sidebar header .toggle {
   width: 2.5em;
   border-radius: 100px;
   background-color: var(--option-button);
-  transition: all 0.3s ease 0s;
+  transition: var(--transition-03);
   cursor: pointer;
 }
 
-.contenu-calendrier-periode .contenu-calendrier .options .scroll-date {
+.contenu-calendrier-periode .contenu-calendrier .barre-nav .scroll-date {
   display: flex;
-  background-color: #3673b0;
+  background-color: var(--option-button);
   height: 2.5em;
   width: 8em ;
   border-radius: 15px;
   align-items: center;
   justify-content: space-around;  
 }
-.contenu-calendrier-periode .contenu-calendrier .options .scroll-date button{
+.contenu-calendrier-periode .contenu-calendrier .barre-nav .scroll-date button{
   display: flex;
   font-size: 22px;
 }
 
-.contenu-calendrier-periode .contenu-calendrier .options .format{
+.contenu-calendrier-periode .contenu-calendrier .barre-nav .format{
   display: flex;
   align-items: center;
   height: 2.5em;
@@ -491,7 +568,7 @@ body.mode-sombre .sidebar header .toggle {
 
   align-items: center;
   justify-content: center;
-  background-color: #3673b0;
+  background-color: var(--option-button);
   cursor: pointer;
 }
 
@@ -535,7 +612,7 @@ body.mode-sombre .sidebar header .toggle {
   font-size: 20px;
   background-color: var(--recherche-box-couleur);
   color: var(--text-color);
-  transition: all ease 0.3s;
+  transition: var(--transition-03);
 }
 
 .menu-quitter .contenu-btn #btn-quitter {
@@ -555,7 +632,7 @@ body.mode-sombre .sidebar header .toggle {
 }
 
 .menu-quitter .contenu-btn #btn-annuler:hover {
-  background-color: var(--recherche-box-couleur-hover);
+  background-color: var( --fond-dropdown-menu-hover);
 }
 
 #overlay {

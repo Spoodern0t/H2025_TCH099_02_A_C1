@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link href="../assets/styles/tempo.css" rel="stylesheet">
+    <link href="../assets/styles/pop-up-calendrier-evenement.css" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
 </head>
 <body>
@@ -29,8 +29,10 @@
                 <label for="auteur">Auteur</label>
                 <input type="text" name="auteur" value="$nom" class="input" disabled>
 
-                <label for="categorie">Catégorie</label>
-                <input type="color" name="categorie" class="input">
+                <div class="content-categorie">
+                    <label for="categorie">Catégorie :</label>
+                    <input type="color" name="categorie" id="code-couleur">
+                </div>
 
                 <label for="evenement">Description</label>
                 <textarea name="evenement"></textarea>
