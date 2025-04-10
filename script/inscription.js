@@ -8,13 +8,9 @@ $(document).ready(() => {
     //bouton "créer votre compte"
     $(".btn-submit").click(()=>{
         const nom = inputNom.val();
-        console.log(nom);
         const courriel = inputCourriel.val();
-        console.log(courriel);
         const mdp1 = inputMotPasse.val();
-        console.log(inputMotPasse);
         const mdp2 = inputMotPasseConfirmation.val();
-        console.log(inputMotPasseConfirmation);
         const regexCourriel = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
         //Vérifier que les mots de passe sont identiques
@@ -57,37 +53,21 @@ $(document).ready(() => {
         let reponse = await fetch('http://localhost/H2025_TCH099_02_A_API/index.php/inscription', {
             method: 'POST',
             body: JSON.stringify({
-                email: courriel,
-                username: nom,
-                password: motPasse
+                "email": courriel,
+                "user-name": nom,
+                "password": motPasse
             }),
             headers: {'Content-Type': 'application/json'}
         });
 
         if (reponse.status != 200){
-            //TODO: afficher vrai message d'erreur si un compte ou une adresse courriel existe déjà
+            //TODO: afficher vrai message d'erreur si un compte ou une adresse courriel existe déjà (code 400)
             console.log("Erreur! Code: " + reponse.status);
             $("#info").css("color", "#000000");
+        } else {
+            console.log("Inscription - succès" + reponse.status);
+            window.location.replace("http://localhost/H2025_TCH099_02_A_C1/formulaire/connexion.html");
         }
-        console.log("Inscription - succès" + reponse.status);
-
-
-        /*
-                1. Utilisateurs
-        ________________________________________
-
-        POST /inscription
-
-        Description : Enregistre un nouvel utilisateur.
-
-        Entrée (JSON) :
-        {
-        "email": "johndoe@gmail.com",
-        "username": "JohnDoe",
-        "password": "password123"
-        }
-
-        Retour : Code HTTP 200 OK
-    */
+        
     }
 });
