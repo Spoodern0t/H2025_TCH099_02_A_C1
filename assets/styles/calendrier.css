@@ -61,7 +61,6 @@ body{
     transition: var(--transition-05);
     padding: 20px 15px;
     z-index: 100;
-  
 }
 
 .sidebar.reduit{
@@ -71,7 +70,8 @@ body{
 .sidebar.reduit .text,
 .sidebar.reduit .switch,
 .sidebar.reduit .menu-bar .mode-luminosite .toggle-switch,
-.sidebar.reduit .recherche-box input {
+.sidebar.reduit .recherche-box input,
+.sidebar.reduit  .dropdown-btn  a .toggle-arrow {
   opacity:0;
 }
 
@@ -137,6 +137,7 @@ body.mode-sombre .sidebar header .toggle{
     align-items: center;
     border-radius: 6px;
     transition: var(--transition-03);
+    cursor:pointer;
 }
 
 .sidebar li a:hover {
@@ -144,7 +145,8 @@ body.mode-sombre .sidebar header .toggle{
 }
 
 .sidebar li a:hover .icons,
-.sidebar li a:hover .text{
+.sidebar li a:hover .text,
+.sidebar .dropdown-btn a:hover .toggle-arrow{
     color: var(--primary-color-light);
 }
 
@@ -231,6 +233,62 @@ body.mode-sombre .sidebar header .toggle{
 
 /* ------- Bouton dropdown-menu ------- */
 
+.sidebar .dropdown-btn  a .toggle-arrow {
+  font-size: 1.5em;
+  color: var(--text-color);
+  transition: var(--transition-03);
+}
+
+.sidebar .sub-menu {
+  display: grid;
+  grid-template-rows: 0fr;
+  position: relative;
+  left: 3em;
+  cursor:pointer;
+  padding: 0;
+  width: max-content;
+  transition: var(--transition-03);
+  > div {
+    overflow: hidden;
+  }
+}
+
+.sidebar .sub-menu li span {
+  color: var(--text-color);
+  padding: 0.5em;
+  padding-right: 4em;
+  border-radius: 15px;
+  transition: var(--transition-03);
+}
+
+.sidebar .sub-menu li span:hover {
+  color: var(--primary-color-light);
+  background-color: var(--option-button);
+}
+
+.sidebar .sub-menu.show {
+  position: relative;
+  grid-template-rows: 1fr;
+}
+
+.toggle-arrow.rotate {
+  transform: rotate(180deg);
+}
+
+.sidebar .sub-menu li span {
+  font-size:18px;
+}
+
+.dropdown-btn {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+}
+
+.dropdown-btn li {
+  flex-grow: 5;
+}
+
 .dropdown-button {
   display: flex;
   align-items: center;
@@ -278,6 +336,7 @@ body.mode-sombre .sidebar header .toggle{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    gap:0.5em;
 }
 
 .menu-bar .mode-luminosite{
@@ -645,6 +704,4 @@ body.mode-sombre .sidebar header .toggle {
   display: none; /* Caché par défaut */
   z-index: 200;
 }
-
-
 /* -------Fin Contenu relié au calendrier ------- */

@@ -15,6 +15,8 @@ const popUp = document.querySelector(".pop-up");
 const btnQuitter = document.querySelector("#btn-quitter");
 const btnAnnuler = document.querySelector("#btn-annuler");
 const logOut = document.querySelector("#log-out");
+const btnSubMenu = document.querySelector(".toggle-arrow");
+const menuBar = document.querySelector(".menu-bar");
 
 
 function afficherMenuQuitter() {
@@ -35,6 +37,17 @@ function cacherOverlay() {
     overlay.style.display = "none";
 }
   
+function toggleSubMenu(button) {
+    const btnSousMenu = button.nextElementSibling;
+    const arrow = button.querySelector('.toggle-arrow');
+
+    if (!sidebar.classList.contains('reduit')) {
+        btnSousMenu.classList.toggle('show');
+        arrow.classList.toggle('rotate');
+    } else {
+        btnSousMenu.classList.remove('show');
+    }
+}
 
 
 btn_dropdown.addEventListener("click", () => {
@@ -57,7 +70,16 @@ toggle.addEventListener("click", () => {
         toggle.style.transform = "translateY(-50%) rotate(0deg)";
         boxRecherche.style.cursor ="pointer";
         boxRecherche.style.width="100%";
+        menuBar.style.overflow="hidden";
 
+        Array.from(sidebar.getElementsByClassName('show')).forEach(ul => {
+            ul.classList.remove('show');
+
+            const toggleButton = ul.previousElementSibling.querySelector('.toggle-arrow');
+            if (toggleButton) {
+                toggleButton.classList.remove('rotate');
+                }
+        })
         
         
 
@@ -65,8 +87,8 @@ toggle.addEventListener("click", () => {
         contenu.style.left = "16.5em";
         contenu.style.width = "calc(100% - 16.5em)";
         toggle.style.transform = "translateY(-50%) rotate(180deg)";
-        boxRecherche.style.cursor ="default";
-     
+        boxRecherche.style.cursor ="default"; 
+        menuBar.style.overflow="scroll";
     }
 });
 

@@ -50,32 +50,57 @@
                         </li>
 
                         <li class="nav-link">
-                            <a href="#">
+                            <a href="./page_calendrier.html">
                                 <i class='bx bx-home icons' ></i>
                                 <span class="text nav-text">Accueil</span>
                             </a>
                         </li>
 
-                        <li class="nav-link">
-                            <a href="#">
+                        <li onClick=toggleSubMenu(this) class="dropdown-btn">
+                            <a>
                                 <i class='bx bxs-pencil icons'></i>
                                 <span class="text nav-text">Création</span>
+                                <i class='bx bx-chevron-down toggle-arrow'></i>
                             </a>
                         </li>
 
-                        <li class="nav-link">
-                            <a href="#">
+                        <ul class="sub-menu">
+                            <div>
+                                <li><span>Événement</span></li>
+                                <li><span>Calendrier</span></li>
+                                <li><span>Période</span></li>
+                                <li><span>Limite</span></li>
+                            </div>
+                        </ul>
+
+                        <li onClick=toggleSubMenu(this) class="dropdown-btn">
+                            <a>
                                 <i class='bx bx-calendar-event icons'></i>
                                 <span class="text nav-text">Événement</span>
+                                <i class='bx bx-chevron-down toggle-arrow'></i>
                             </a>
                         </li>
 
-                        <li class="nav-link">
-                            <a href="#">
+                        <ul class="sub-menu">
+                            <div>
+                                <li><span></span></li>
+                            </div>
+                        </ul>
+
+
+                        <li onClick=toggleSubMenu(this) class="dropdown-btn">
+                            <a>
                                 <i class='bx bx-time-five icons'></i>
                                 <span class="text nav-text">Période</span>
+                                <i class='bx bx-chevron-down toggle-arrow'></i>
                             </a>
                         </li>
+
+                        <ul class="sub-menu">
+                            <div>
+                                <li><span></span></li>
+                            </div>
+                        </ul>
 
                         <li class="nav-link">
                             <a href="#">
