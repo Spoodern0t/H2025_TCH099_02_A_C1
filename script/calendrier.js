@@ -24,7 +24,8 @@ $(document).ready(()=>{
     const toggle = document.querySelector(".sidebar .toggle"); 
     const modeSwitch = document.querySelector(".switch");
     const contenu = document.querySelector(".contenu-calendrier-periode"); 
-    const btn_dropdown = document.querySelector(".dropdown-button");
+    const sidebarDropdowns = document.querySelectorAll(".dropdown-btn");
+    const accountDropdown = document.querySelector(".dropdown-button");
     const menuDropdown = document.querySelector(".dropdown-menu");
     const boxRecherche = document.querySelector(".recherche-box");
     const btnPeriode   = document.querySelector("#btn-creer-periode");
@@ -80,8 +81,15 @@ $(document).ready(()=>{
         }
     }
 
+    // écouteurs d'évènement
 
-    btn_dropdown.addEventListener("click", () => {
+    sidebarDropdowns.forEach(dropdown => {
+        dropdown.addEventListener("click", function(){
+            toggleSubMenu(this);
+        });
+    });
+
+    accountDropdown.addEventListener("click", () => {
         menuDropdown.classList.toggle("active");
     });
 
