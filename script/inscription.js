@@ -63,10 +63,9 @@ $(document).ready(() => {
         if (reponse.status != 200){
             //TODO: afficher vrai message d'erreur si un compte ou une adresse courriel existe déjà (code 400)
             console.log("Erreur! Code: " + reponse.status);
-            $("#info").css("color", "#000000");
         } else {
             console.log("Inscription - succès" + reponse.status);
-            window.location.replace("http://localhost/H2025_TCH099_02_A_C1/formulaire/connexion.html");
+            location.replace("http://localhost/H2025_TCH099_02_A_C1/formulaire/connexion.html");
         }
         
     }
