@@ -1,4 +1,10 @@
 $(document).ready(() =>{
+    //rediriger l'utilisateur s'il est déjà connecté
+    const token = localStorage.getItem('token');
+    if (token != null){
+        location.replace("http://localhost/H2025_TCH099_02_A_C1/page_accueil/page_calendrier.html");
+    }
+
     //éléments graphiques
     const inputCourriel = $("#fld-courriel");
     const inputMotPasse = $("#fld-mdp");
