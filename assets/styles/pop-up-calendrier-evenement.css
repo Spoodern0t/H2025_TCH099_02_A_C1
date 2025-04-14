@@ -1,0 +1,230 @@
+
+/* ------- Définition de constante pour les thèmes de couleur ------- */
+:root {
+    --body-color:#FFF;
+    --bd-color: #E4E9F7;
+    --primary-color: #FFEBD0;
+    --fond-dropdown-menu:#FFF;
+    --fond-dropdown-menu-hover:#f1f1f1;
+    --primary-color-light: #F6F5FF;
+    --toggle-color: #DDD;
+    --text-color: #363636; 
+    --label-color:#363636;
+    --legend-color:#363636;
+    --type-color:#f0cda0;
+}
+
+body{
+    background-color: var(--body-color) !important; /* Écraser le fond par défaut de bootstrap */
+    
+}
+
+#pop-up-page {
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bd-color);
+}
+
+.pop-up-periode-limite {
+    display: flex;
+    position: fixed;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    top:10%;
+    right: 38%;
+    height: 60%;
+    min-width: 25%;
+    max-width: 25%;
+    border-radius: 10px;
+    border: solid rgb(106, 104, 104) 2px;
+    margin: 2em 0;
+    background-color: var(--primary-color);
+    z-index: 201;
+}
+
+.pop-up-periode-limite legend {
+    font-family: 'Times New Roman', Times, serif;
+    color: var(--legend-color);
+    padding: 0.5em;
+    font-size:1.5em;
+    margin: 1em;
+    float: none;
+    width: auto;
+}
+
+.pop-up-periode-limite #btn-quit {
+    position: absolute;
+    top:-1.5em;
+    right:1.1em;
+    display: flex;
+    background-color: var(--option-button);
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    border-radius: 5px;
+    padding: 2%;
+    cursor:pointer;
+    color: white;
+    font-size: 25px;
+}
+
+.pop-up-periode-limite #btn-quit:hover{
+    transform: scale(1.1);
+    background-color: var(--option-button-hover);
+}
+
+.pop-up-periode-limite .type {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    left: -1.10em;
+    top: -1em;
+    gap: 0.5em;
+    width: 1em; /* Rétréci par défaut */
+    overflow: hidden;
+    transition: width 1.0s ease, opacity 0.3s ease, left 1.0s ease;
+    -webkit-mask-image: linear-gradient(to right, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 100%);
+    mask-image: linear-gradient(to right, rgba(0, 0, 0, 1) 100%, rgba(0, 0, 0, 0) 100%);
+}
+
+/* Effet au survol */
+.pop-up-periode-limite .type:hover {
+    left: -7.04em;
+    width: 6.92em; 
+    margin: auto;
+    overflow: visible;
+    -webkit-mask-image: linear-gradient(to right, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 100%);
+    mask-image: linear-gradient(to right, rgba(0, 0, 0, 1) 100%, rgba(0, 0, 0, 0) 100%);
+}
+
+/* Boutons de type */
+.pop-up-periode-limite .type button  {
+    display: flex;
+    justify-content: flex-start;
+    color: rgb(255, 255, 255);
+    background-color: var(--type-color);
+    padding-left: 10px;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    margin-left:3.5%;
+    margin-right: -0.5em;
+    font-family: 'Times New Roman', Times, serif;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+
+/* Texte des boutons caché avant le survol */
+.pop-up-periode-limite .type button span {
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+/* Affiche le texte au survol */
+.pop-up-periode-limite .type:hover button span {
+    opacity: 1;
+}
+
+/* Changement de couleur au survol du bouton */
+.pop-up-periode-limite .type button:hover {
+    background-color: red;
+    overflow:visible;
+    cursor: pointer;
+    transform: scaleX(1.05);
+}
+
+
+.form-contenu {
+    display: flex;
+    flex-direction: column;
+}
+
+.pop-up-periode-limite .form-contenu label,
+.pop-up-periode-limite .form-contenu .periode,
+.pop-up-periode-limite .form-contenu  .content-categorie {
+    color: var(--label-color);
+    margin-top:10px;
+    font-family: 'Times New Roman', Times, serif;
+    margin-bottom: 5px;
+}
+
+.pop-up-periode-limite .form-contenu .periode {
+    display: flex;
+    align-items: center; 
+    gap: 0.5em; 
+}
+
+.pop-up-periode-limite .form-contenu .periode input {
+    margin:5px 0 0 0;
+    cursor:pointer;
+}
+
+
+.pop-up-periode-limite .form-contenu .input{
+    padding: 0.2em;
+    border-radius: 5px;
+    background-color: #ffffff;
+    border: #c3c3c3 solid 1px;  
+    min-width: 15em;
+    max-width: 20em;
+    color: var(--text-color);
+}
+
+.pop-up-periode-limite .form-contenu .content-categorie{
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+}
+
+.pop-up-periode-limite .form-contenu .content-categorie #code-couleur {
+    width: 1.5em;
+    height: 1.5em;
+    margin-top: 0.5em;
+}
+
+
+
+.pop-up-periode-limite .form-contenu textarea{
+    padding: 0.5em;
+    border-radius: 5px;
+    background-color: #ffffff;
+    border: #c3c3c3 solid 1px;  
+    min-width: 19em;
+    max-width: 20em;
+    min-height: 3em;
+    max-height: 5em;
+    color: var(--text-color);
+}
+
+.pop-up-periode-limite .form-contenu .date {
+    padding: 1.2em;
+    border-radius: 5px;
+    background-color: #ffffff;
+    border: #c3c3c3 solid 1px;  
+}
+
+.pop-up-periode-limite .boutons {
+    display: flex;
+    padding: 1em;
+    gap:1.5em;
+    justify-content: center;
+}
+
+.pop-up-periode-limite .boutons .btn-save{
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    font-size: 1em;
+    margin-top: 0.5em;
+    margin-bottom: 1.5em;
+    width:100%;
+    background-color: var(--option-button);
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.pop-up-periode-limite .boutons .btn-save:hover {
+    background-color: var(--option-button-hover);
+    transform: scale(1.05);
+}

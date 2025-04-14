@@ -1,92 +1,77 @@
 
 /* ------- Définition de constante pour les thèmes de couleur ------- */
 :root {
-    --thead-color: rgba(0,136,169,1);
+    --primary-color: #FFEBD0;
     --body-color:#FFF;
     --bd-color: #E4E9F7;
-    --time-color: hsl(210, 5%, 70%);
-    --time-width: 75px;
-    --sticky-height: 40px;
-    --recherche-box-couleur: hsl(192, 10%, 90%);
-    --barre-nav:#FFF;
-    --option-button:rgb(48, 48, 248);
-    --option-button-hover:rgb(24, 24, 255);
-    --liste-periode-couleur:#d1d8f0;
-    --sidebar-color: #FFF;
-    --btn-dropdwon: black;
     --fond-dropdown-menu:#FFF;
     --fond-dropdown-menu-hover:#f1f1f1;
-  
-    --primary-color: #695CFE;
     --primary-color-light: #F6F5FF;
     --toggle-color: #DDD;
-    --text-color: #6a6a6a; 
-    
-  }
-  
-  
-li, a, button {
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: 500;
-    font-size: 16px;
-    text-decoration: none; 
-}
-  
-  button {
-    border: 0;
-    background: var(--thead-bg);
-    color:#f1f1f1;
-  }
-  
-  body{
-    background-color: var(--body-color) !important; /* Écraser le fond par défaut de bootstrap */
+    --text-color: #363636;  
+    --legend-color:#363636;
+    --legend-color:#363636;
+    --type-color:#f0cda0;
   }
 
-  #page{
+
+
+body{
+    background-color: var(--body-color) !important; /* Écraser le fond par défaut de bootstrap */
+    
+}
+
+#pop-up-page {
     display:flex;
     align-items: center;
     justify-content: center;
-    height: 100vh;
     background: var(--bd-color);
-  }
+}
 
 .pop-up-periode-limite {
     display: flex;
+    position: fixed;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 60%;
-    min-width: 20%;
-    max-width: 20%;
+    top:10%;
+    right: 38%;
+    height: 75%;
+    min-width: 25%;
+    max-width: 25%;
     border-radius: 10px;
     border: solid rgb(106, 104, 104) 2px;
     margin: 2em 0;
-    background-color: #a2baf8;
-    
+    background-color: var(--primary-color);
+    z-index: 201;
 }
 
 .pop-up-periode-limite legend {
-    font-size:1.25em;
+    padding: 0.5em;
+    font-size:1.5em;
     margin: 1em;
-
+    float: none;
+    width: auto;
+    font-family: 'Times New Roman', Times, serif;
+    color: var(--legend-color);
 }
 
 .pop-up-periode-limite #btn-quit {
     position: absolute;
-    right:23.5em;
-    top:7.4em;
+    top:-1.5em;
+    right:1.1em;
     display: flex;
     background-color: var(--option-button);
     transition: background-color 0.3s ease, transform 0.3s ease;
     border-radius: 5px;
-    padding: 0.35%;
+    padding: 2%;
     cursor:pointer;
     color: white;
     font-size: 25px;
 }
 
 .pop-up-periode-limite #btn-quit:hover{
-    transform: scale(1.05);
+    transform: scale(1.1);
     background-color: var(--option-button-hover);
 }
 
@@ -94,21 +79,21 @@ li, a, button {
     display: flex;
     flex-direction: column;
     position: absolute;
-    left: 34.23em;
-    top: 13em;
+    left: -1.10em;
+    top: -1em;
     gap: 0.5em;
     width: 1em; /* Rétréci par défaut */
     overflow: hidden;
     transition: width 1.0s ease, opacity 0.3s ease, left 1.0s ease;
-    transform-origin: left;
     -webkit-mask-image: linear-gradient(to right, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 100%);
     mask-image: linear-gradient(to right, rgba(0, 0, 0, 1) 100%, rgba(0, 0, 0, 0) 100%);
 }
 
 /* Effet au survol */
 .pop-up-periode-limite .type:hover {
-    left: 28.3em;
+    left: -7.04em;
     width: 6.92em; 
+    margin: auto;
     overflow: visible;
     -webkit-mask-image: linear-gradient(to right, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 100%);
     mask-image: linear-gradient(to right, rgba(0, 0, 0, 1) 100%, rgba(0, 0, 0, 0) 100%);
@@ -117,15 +102,15 @@ li, a, button {
 /* Boutons de type */
 .pop-up-periode-limite .type button  {
     display: flex;
-    align-items: center;
     justify-content: flex-start;
-    color: black;
-    background-color: #5590d8;
-    padding-right: 20px;
+    color: rgb(255, 255, 255);
+    background-color: var(--type-color);
     padding-left: 10px;
-    border-top-left-radius: 10px;
-    border-bottom-left-radius: 10px;
-    width: 100%;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    margin-left:3.5%;
+    margin-right: -0.5em;
+    font-family: 'Times New Roman', Times, serif;
     transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
@@ -144,8 +129,9 @@ li, a, button {
 /* Changement de couleur au survol du bouton */
 .pop-up-periode-limite .type button:hover {
     background-color: red;
-    overflow: visible;
+    overflow:visible;
     cursor: pointer;
+    transform: scaleX(1.05);
 }
 
 
@@ -156,7 +142,9 @@ li, a, button {
 
 .pop-up-periode-limite .form-contenu label,
 .pop-up-periode-limite .form-contenu .periode {
+    color: var(--label-color);
     margin-top:10px;
+    font-family: 'Times New Roman', Times, serif;
     margin-bottom: 5px;
 }
 
@@ -167,21 +155,24 @@ li, a, button {
 }
 
 .pop-up-periode-limite .form-contenu .periode input {
+    color: var(--text-color);
     margin:5px 0 0 0;
     cursor:pointer;
 }
 
 
 .pop-up-periode-limite .form-contenu .input{
-    padding: 0.5em;
+    color: var(--text-color);
+    padding: 0.2em;
     border-radius: 5px;
     background-color: #ffffff;
     border: #c3c3c3 solid 1px;  
     min-width: 15em;
     max-width: 20em;
-    max-height: 2em;
+    
 }
 .pop-up-periode-limite .form-contenu textarea{
+    color: var(--text-color);
     padding: 0.5em;
     border-radius: 5px;
     background-color: #ffffff;
@@ -193,7 +184,7 @@ li, a, button {
 }
 
 .pop-up-periode-limite .form-contenu .date {
-    padding: 1.5em;
+    padding: 1.2em;
     border-radius: 5px;
     background-color: #ffffff;
     border: #c3c3c3 solid 1px;  
@@ -207,17 +198,18 @@ li, a, button {
 }
 
 .pop-up-periode-limite .boutons .btn-save{
-    padding: 12px;
+    padding: 10px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     text-align: center;
-    font-size: 16px;
-    margin-bottom: 10px;
+    font-size: 1em;
+    margin-top: 0.5em;
+    margin-bottom: 1.5em;
     width:100%;
     background-color: var(--option-button);
-    transition: transform 0.3s ease;
-    
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    font-family: 'Times New Roman', Times, serif;
 }
 
 .pop-up-periode-limite .boutons .btn-save:hover {
