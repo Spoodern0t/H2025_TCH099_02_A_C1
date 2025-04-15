@@ -6,6 +6,8 @@
     <title>Connexion</title>
     <link href="../assets/styles/form-connexion.css" rel="stylesheet">
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="../script/connexion.js"></script>
 </head>
 
 <body>
@@ -32,25 +34,25 @@
                         <!-- Adresse courriel -->
                         <div class="style-conteneur">
                             <label for="courriel">Adresse courriel</label>
-                            <input type="email" name="courriel" required>
+                            <input type="email" name="courriel" id="fld-courriel" required>
                         </div>
 
                         <!-- Mot de passe -->
                         <div class="style-conteneur">
                             <label for="mot-de-passe">Mot de passe</label>
-                            <input type="password" name="mot-de-passe" required>
+                            <input type="password" name="mot-de-passe" id="fld-mdp" required>
                         </div>
 
                         <!-- Options -->
                         <div class="form-options">
                             <label for="souvenir"> 
-                                <input type="checkbox" name="souvenir"> Souviens-toi de moi
+                                <input type="checkbox" name="souvenir" id="btn-souvenir"> Souviens-toi de moi
                             </label>
                             <a href="#">Mot de passe oublié ?</a>
                         </div>
 
                         <!-- Submit button -->
-                        <button type="submit" class="btn btn-connexion">Se connecter</button>
+                        <button type="button" class="btn btn-connexion">Se connecter</button>
 
             
                         <div class="divider"><span>OU</span></div>

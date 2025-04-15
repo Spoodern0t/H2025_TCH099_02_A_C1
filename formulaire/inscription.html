@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="../assets/styles/form-inscription.css" rel="stylesheet">
     <title>Inscription</title>
+    <link href="../assets/styles/form-inscription.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="../script/inscription.js"></script>
 </head>
 <body>
 
@@ -25,29 +27,29 @@
                         <!-- Nom d'utilisateur -->
                         <div class="style-conteneur">
                             <label for="nom-utilisateur">Nom d'utilisateur</label>
-                            <input type="text" name="nom-utilisateur" required>
+                            <input type="text" name="nom-utilisateur" id="fld-nom" required>
                         </div>
 
                         <!-- Adresse courriel -->
                         <div class="style-conteneur">
                             <label for="adresse-courriel">Adresse courriel</label>
-                            <input type="email" name="adresse-courriel" required>
+                            <input type="email" name="adresse-courriel" id="fld-courriel" required>
                         </div>
 
                         <!-- Mot de passe -->
                         <div class="style-conteneur">
                             <label for="mot-de-passe">Mot de passe</label>
-                            <input type="text" name="mot-de-passe" required>
+                            <input type="text" name="mot-de-passe" id="fld-mdp1" required>
                         </div>
                         
                         <!-- Mot de passe confirmation-->
                         <div class="style-conteneur">
                             <label for="conf-mdp">Confirmer votre mot de passe</label>
-                            <input type="text" name="conf-mdp" required>
+                            <input type="text" name="conf-mdp" id="fld-mdp2" required>
                         </div>
 
                         <!-- Submit button -->
-                        <button type="submit" class="btn btn-submit">Créer votre compte</button>
+                        <button type="button" class="btn btn-submit">Créer votre compte</button>
 
                         <!-- Reset button -->
                         <button type="reset" class="btn btn-reset">Recommencer</button>
