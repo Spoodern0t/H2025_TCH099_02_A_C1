@@ -28,9 +28,10 @@ $(document).ready(()=>{
     const accountDropdown = document.querySelector(".dropdown-button");
     const menuDropdown = document.querySelector(".dropdown-menu");
     const boxRecherche = document.querySelector(".recherche-box");
-    const btnPeriode   = document.querySelector("#btn-creer-periode");
-    const btnEvenement = document.querySelector("#btn-creer-evenement");
+    const btnAfficherPeriode   = document.querySelector(".btn-creer-periode");
+    const btnAfficherEvenement = document.querySelector(".btn-creer-evenement");
     const btnAfficherLimite = document.querySelector(".btn-creer-limite");
+    const btnAfficherCalendrier = document.querySelector(".btn-creer-calendrier");
     const btnsAnnuler   = document.querySelector("#btn-quit");
     const overlay = document.getElementById("overlay");
     const popUp = document.querySelector(".pop-up");
@@ -40,13 +41,36 @@ $(document).ready(()=>{
     const btnSubMenu = document.querySelector(".toggle-arrow");
     const menuBar = document.querySelector(".menu-bar");
 
-    //initialisation
+    //initier les éléments graphiques
 
     $("#txt-nom").text(nom);
     $("#profile-icon").text(nom.charAt(0).toUpperCase());
 
     if (localStorage.getItem("mode-sombre") == "enabled"){
         body.classList.toggle("mode-sombre");
+    }
+
+    const jours = ["lundi", "mardi", "mercredi", "jeudi", "vendredi", "samedi", "dimanche"];
+    const conteneur = document.querySelector(".calendrier");
+
+    for (let h = 0; h < 24; h++) {
+        const heure = h.toString().padStart(2, '0') + ":00";
+
+        const heureCell = document.createElement("div");
+        heureCell.classList.add("cell", "heure-cell");
+        const label = document.createElement("div");
+        label.classList.add("heure-label");
+        label.textContent = heure;
+        heureCell.appendChild(label);
+        conteneur.appendChild(heureCell);
+
+        jours.forEach(jour => {
+            const cell = document.createElement("div");
+            cell.classList.add("cell");
+            cell.dataset.day = jour;
+            cell.dataset.hour = heure;
+            conteneur.appendChild(cell);
+        });
     }
 
     //fonctions graphiques
@@ -125,10 +149,8 @@ $(document).ready(()=>{
                 const toggleButton = ul.previousElementSibling.querySelector('.toggle-arrow');
                 if (toggleButton) {
                     toggleButton.classList.remove('rotate');
-                    }
-            })
-            
-            
+                }
+            });
 
         } else {
             contenu.style.left = "16.5em";
@@ -139,7 +161,8 @@ $(document).ready(()=>{
         }
     });
 
-        // Gestion de la recherche 
+
+    // Gestion de la recherche 
     boxRecherche.addEventListener("click", () => {
         if (sidebar.classList.contains('reduit')) {
             sidebar.classList.remove('reduit');
@@ -151,7 +174,6 @@ $(document).ready(()=>{
             boxRecherche.style.cursor = "default";
         }
     });
-
 
     //bouton "se déconnecter"
     logOut.addEventListener("click", () => {
@@ -170,16 +192,14 @@ $(document).ready(()=>{
     });
 
 
-    btnPeriode.addEventListener("click", () => {
+    btnAfficherPeriode.addEventListener("click", () => {
         fetch("pop-up-periode.html")
         .then(promesse => {
             if (!(promesse.ok)) { //Reponse.ok est du statut 200 à 299
-            throw new Error("Erreur lors du chargement du pop-up période."); //Si response.ok est false (statut 404-500)
-
+                throw new Error("Erreur lors du chargement du pop-up période."); //Si response.ok est false (statut 404-500)
             }
             return promesse.text();
         })
-
         .then(promesse => {
             afficherOverlay();
             document.getElementById("conteneur-pop-up").innerHTML = promesse;
@@ -187,24 +207,22 @@ $(document).ready(()=>{
             const btnAnnuler = document.querySelector("#btn-quit"); 
             if (btnAnnuler) {
                 btnAnnuler.addEventListener("click", () => {
-                document.querySelector("#conteneur-pop-up").innerHTML = "";
-                cacherOverlay();
-            });
-        }
+                    document.querySelector("#conteneur-pop-up").innerHTML = "";
+                    cacherOverlay();
+                });
+            }
         })
         .catch(error => console.error("Erreur:", error));
     });
 
-    btnEvenement.addEventListener("click", () => {
+    btnAfficherEvenement.addEventListener("click", () => {
         fetch("pop-up-evenement.html")
         .then(promesse => {
             if (!(promesse.ok)) { //Reponse.ok est du statut 200 à 299
-            throw new Error("Erreur lors du chargement du pop-up événement."); //Si response.ok est false (statut 404-500)
-
+                throw new Error("Erreur lors du chargement du pop-up événement."); //Si response.ok est false (statut 404-500)
             }
             return promesse.text();
         })
-
         .then(promesse => {
             afficherOverlay();
             document.getElementById("conteneur-pop-up").innerHTML = promesse;
@@ -212,42 +230,86 @@ $(document).ready(()=>{
             const btnAnnuler = document.querySelector("#btn-quit"); 
             if (btnAnnuler) {
                 btnAnnuler.addEventListener("click", () => {
-                document.querySelector("#conteneur-pop-up").innerHTML = "";
-                cacherOverlay();
-            });
-        }
+                    document.querySelector("#conteneur-pop-up").innerHTML = "";
+                    cacherOverlay();
+                });
+            }
         })
         .catch(error => console.error("Erreur:", error));
     });
 
-
+    // btnAfficherLimite ne semble pas exister dans le html
     /*
-        FIXME: btnAfficherLimite n'existe pas dans page_calendrier.html
-        Cette méthode cause une erreur dans son état actuel.
-        À régler lorsque je sais ce qu'elle doit faire. ~AF
-    */
     btnAfficherLimite.addEventListener("click", () => {
         fetch("pop-up-limite.html")
         .then(promesse => {
             if(!(promesse.ok)) {
-                throw new Error("Erreur lors du chargument du pop-up limite.")
+                throw new Error("Erreur lors du chargement du pop-up limite.")
             }
             return promesse.text();
         })
         .then(promesse => {
+            afficherOverlay();
             document.getElementById("conteneur-pop-up").innerHTML = promesse;
             const btnAnnuler = document.querySelector("#btn-quit"); 
             if (btnAnnuler) {
                 btnAnnuler.addEventListener("click", () => {
                     document.querySelector("#conteneur-pop-up").innerHTML = "";
+                    cacherOverlay();
                 });
             }
-        
         })
         .catch(error => console.error("Erreur:", error));
     });
+    */
 
-    
+    // btnAfficherCalendrier ne semble pas exister dans le html
+    /*
+    btnAfficherCalendrier.addEventListener("click", () => {
+        fetch("pop-up-calendrier.html")
+        .then(promesse => {
+            if(!(promesse.ok)) {
+                throw new Error("Erreur lors du chargement du pop-up limite.")
+            }
+            return promesse.text();
+        })
+        .then(promesse => {
+            afficherOverlay();
+            document.getElementById("conteneur-pop-up").innerHTML = promesse;
+            const btnAnnuler = document.querySelector("#btn-quit"); 
+            if (btnAnnuler) {
+                btnAnnuler.addEventListener("click", () => {
+                    document.querySelector("#conteneur-pop-up").innerHTML = "";
+                    cacherOverlay();
+                });
+            }
+          })
+          .catch(error => console.error("Erreur:", error));
+    });
+    */
+
+
+    //Code JavaScript pour la logique du calendrier 
+
+    function ajouterEvenement(jour, heureDebut, titre, duree) {
+        const cellule = document.querySelector(`.cell[data-day="${jour.toLowerCase()}"][data-hour="${heureDebut}"]`);
+        if (cellule) {
+            const eventDiv = document.createElement("div");
+            eventDiv.classList.add("event");
+            eventDiv.textContent = titre;
+
+            const hauteur = 40 * duree;
+            eventDiv.style.height = `${hauteur - 4}px`;
+            eventDiv.style.top = "0px";
+            eventDiv.style.zIndex = "1";
+
+            cellule.appendChild(eventDiv);
+        }
+    }
+
+    ajouterEvenement("mardi", "01:00", "Cours de sport", 5);
+
+
     //requêtes à l'API
 
     /**
@@ -267,6 +329,3 @@ $(document).ready(()=>{
     }
 
 });
-
-
-
