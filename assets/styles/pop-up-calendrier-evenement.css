@@ -41,7 +41,7 @@ body{
     border: solid rgb(106, 104, 104) 2px;
     margin: 2em 0;
     background-color: var(--primary-color);
-    z-index: 201;
+    z-index: 501;
 }
 
 .pop-up-periode-limite legend {
