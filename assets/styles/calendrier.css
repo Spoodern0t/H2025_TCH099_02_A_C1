@@ -684,7 +684,7 @@ body.mode-sombre .sidebar header .toggle {
 .cell {
   border-right: 1px solid #ccc;
   border-bottom: 1px solid #ccc;
-  height: 40px;
+  height: 60px;
   position: relative;
   background-color: var(--contenu-calendrier-periode);
   transition: var(--transition-03);
@@ -702,7 +702,7 @@ body.mode-sombre .sidebar header .toggle {
   left: 50%;
   transform: translate(-50%, -50%);
 }
-.event {
+.periode {
   background-color: var(--periode-evenement-color);
   color: var(--text-color);
   width: 90%;
@@ -718,7 +718,7 @@ body.mode-sombre .sidebar header .toggle {
   cursor: pointer;
 }
 
-.event:hover {
+.periode:hover {
   transform: scale(1.05);
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   background-color: var(--periode-evenement-color-hover );

@@ -13,11 +13,10 @@ $(document).ready(()=>{
     //autres variables et constantes
 
     const jourPresent = new Date();
-    console.log(jourPresent.getDay() +" " +jourPresent.getDate() +" " +jourPresent.getMonth() +" " +jourPresent.getFullYear());
 
-    const debutSemaine = new Date(jourPresent); //dimanche de la semaine présemment affichée sur le calendrier
+    const debutSemaine = new Date(jourPresent); //dimanche de la semaine présentement affichée sur le calendrier
     debutSemaine.setDate(jourPresent.getDate() - jourPresent.getDay());
-    console.log(debutSemaine.getDay() +" " +debutSemaine.getDate() +" " +debutSemaine.getMonth() +" " +debutSemaine.getFullYear());
+    
 
     //éléments graphiques
     
@@ -79,6 +78,8 @@ $(document).ready(()=>{
         });
     }
 
+    changerSemaine(debutSemaine.getDate());
+
     //fonctions graphiques
 
     function afficherMenuQuitter() {
@@ -109,29 +110,6 @@ $(document).ready(()=>{
         } else {
             btnSousMenu.classList.remove('show');
         }
-    }
-
-    function changerSemaine(dateDimanche){
-        //déclarer le début et la fin de la semaine à afficher
-        debutSemaine.setDate(dateDimanche);
-        console.log(debutSemaine.getDay() +" " +debutSemaine.getDate() +" " +debutSemaine.getMonth() +" " +debutSemaine.getFullYear());
-        const finSemaine = new Date(debutSemaine);
-        finSemaine.setDate(debutSemaine.getDate() + 6);
-        console.log(finSemaine.getDay() +" " +finSemaine.getDate() +" " +finSemaine.getMonth() +" " +finSemaine.getFullYear());
-
-        //mettre à jour le texte au sommet du calendrier
-        const mois = ["janvier", "février", "mars", "avril", "mai", "juin", "juillet", "août", "septembre", "octobre", "novembre", "décembre"];
-
-        let txtSemaine = "Semaine du " +debutSemaine.getDate() +" ";
-        if (debutSemaine.getDate() > finSemaine.getDate()){
-            txtSemaine += mois[debutSemaine.getMonth()] +" ";
-            if (debutSemaine.getFullYear() < finSemaine.getFullYear()){
-                txtSemaine += debutSemaine.getFullYear() +" ";
-            }
-        }
-        txtSemaine += "au " +finSemaine.getDate() +" " +mois[finSemaine.getMonth()] +" " +finSemaine.getFullYear();
-        
-        $(txtInfoSemaine).text(txtSemaine);
     }
 
     // écouteurs d'évènement
@@ -337,25 +315,66 @@ $(document).ready(()=>{
     }
 
 
-    function ajouterEvenement(jour, heureDebut, titre, duree) {
-        const cellule = document.querySelector(`.cell[data-day="${jour.toLowerCase()}"][data-hour="${heureDebut}"]`);
+    function ajouterPeriode(jour, heureDebut, titre, duree) {
+        const [heure, minutes] = heureDebut.split(":").map(Number);
+        const cellule = document.querySelector(`.cell[data-day="${jour.toLowerCase()}"][data-hour="${heure.toString().padStart(2, '0')}:00"]`);
         if (cellule) {
-            const eventDiv = document.createElement("div");
-            eventDiv.classList.add("event");
-            eventDiv.textContent = titre;
+            const periodeDiv = document.createElement("div");
+            periodeDiv.classList.add("periode", "element");
+            periodeDiv.textContent = titre +'\n' +heureDebut;
+            periodeDiv.style.whiteSpace = 'pre-wrap';
 
-            const hauteur = 40 * duree;
-            eventDiv.style.height = `${hauteur - 4}px`;
-            eventDiv.style.top = "0px";
-            eventDiv.style.zIndex = "1";
+            const hauteur = 60 * duree; //1px par minute
+            periodeDiv.style.position = 'absolute';
+            periodeDiv.style.top = `${minutes}px`;
+            periodeDiv.style.height = `${hauteur}px`;
+            periodeDiv.style.zIndex = "1";
 
-            cellule.appendChild(eventDiv);
+            cellule.appendChild(periodeDiv);
         }
     }
 
-    ajouterEvenement("mardi", "01:00", "Cours de sport", 5);
+    ajouterPeriode("mardi", "01:00", "Cours de sport", 5);
+    ajouterPeriode("lundi", "15:00", "test 1", 2);
+    ajouterPeriode("mardi", "04:00", "test 2", 5);
+    ajouterPeriode("dimanche", "01:00", "test", 1);
+    ajouterPeriode("mercredi", "07:00", "shit", 8);
+    ajouterPeriode("vendredi", "01:17", "eenie", 1);
+    ajouterPeriode("vendredi", "02:45", "meenie", 1);
+    ajouterPeriode("vendredi", "03:56", "miney", 3);
+    ajouterPeriode("vendredi", "08:23", "mort", 2);
 
+    function viderCalendrier(){
+        document.querySelectorAll('.element').forEach(el => el.remove());
+    }
 
+    function changerSemaine(dateDimanche){
+        //déclarer le début et la fin de la semaine à afficher
+        debutSemaine.setDate(dateDimanche);
+        console.log(debutSemaine.getDay() +" " +debutSemaine.getDate() +" " +debutSemaine.getMonth() +" " +debutSemaine.getFullYear());
+        const finSemaine = new Date(debutSemaine);
+        finSemaine.setDate(debutSemaine.getDate() + 6);
+        console.log(finSemaine.getDay() +" " +finSemaine.getDate() +" " +finSemaine.getMonth() +" " +finSemaine.getFullYear());
+
+        //mettre à jour le texte au sommet du calendrier
+        const mois = ["janvier", "février", "mars", "avril", "mai", "juin", "juillet", "août", "septembre", "octobre", "novembre", "décembre"];
+
+        let txtSemaine = "Semaine du " +debutSemaine.getDate() +" ";
+        if (debutSemaine.getDate() > finSemaine.getDate()){
+            txtSemaine += mois[debutSemaine.getMonth()] +" ";
+            if (debutSemaine.getFullYear() < finSemaine.getFullYear()){
+                txtSemaine += debutSemaine.getFullYear() +" ";
+            }
+        }
+        txtSemaine += "au " +finSemaine.getDate() +" " +mois[finSemaine.getMonth()] +" " +finSemaine.getFullYear();
+        
+        $(txtInfoSemaine).text(txtSemaine);
+
+        //enlever les éléments affichés
+        viderCalendrier();
+
+        //afficher les bons éléments pour la semaine
+    }
 
 
     //requêtes à l'API
