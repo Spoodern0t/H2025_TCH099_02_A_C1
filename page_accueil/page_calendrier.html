@@ -217,23 +217,28 @@
 
                 <div class="scroll-date">
 
-                    <div id="retour"> 
-                        <button>
+                    <div> 
+                        <button id="btn-reculer-semaine" class="btn-nav-semaine">
                             <i class='bx bx-chevron-left toggle'></i>
                         </button>
                     </div>
 
-                    <div id="semaine-mois">
-                        <span>TODAY</span>
+                    <div>
+                        <button id="btn-aujourdhui" class="btn-nav-semaine">AUJOURD'HUI</button>
                     </div>
 
-                    <div id="avancer"> 
-                        <button>
+                    <div> 
+                        <button id="btn-avancer-semaine" class="btn-nav-semaine">
                             <i class='bx bx-chevron-right toggle'></i>
                         </button>
                     </div>
                 </div>
 
+                <div id="info-semaine-container">
+                    <span id="info-semaine">Semaine du [jour] au [jour]</span>
+                </div>
+
+                <!--
                 <div class="format">
 
                     <div class="format-style">
@@ -248,6 +253,7 @@
                         </button>
                     </div>
                 </div>
+                -->
                 
 
                 <div class="btn-creer-evenement">
@@ -261,13 +267,13 @@
             <div class="conteneur-calendrier">
                 <div class="calendrier">
                     <div class="jour-calendrier"></div>
+                    <div class="jour-calendrier">Dimanche</div>
                     <div class="jour-calendrier">Lundi</div>
                     <div class="jour-calendrier">Mardi</div>
                     <div class="jour-calendrier">Mercredi</div>
                     <div class="jour-calendrier">Jeudi</div>
                     <div class="jour-calendrier">Vendredi</div>
                     <div class="jour-calendrier">Samedi</div>
-                    <div class="jour-calendrier">Dimanche</div>
                 </div>
             </div>
         </div>

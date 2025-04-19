@@ -1,21 +1,23 @@
 $(document).ready(()=>{
 
-    //vérifier que la connexion est valide avant de charger le calendrier.
-    //TODO: remplacer par getUserCalendars. les routes vont éventuellement renvoyer 401 si le token est invalide.
+    //récupérer les détails de l'utilisateur (ou le rediriger s'il n'est pas correctement connecté)
 
-    const token = localStorage.getItem("token");
-    if (token == null){
-        location.replace("http://localhost/H2025_TCH099_02_A_C1/formulaire/connexion.html");
-    }
-
-    //récupérer les détails de l'utilisateur
-
-    const nom = localStorage.getItem("username");
-    const courriel = localStorage.getItem("email");
     let userCalendars;
     getUserCalendars().then(reponseObj =>{
         userCalendars = reponseObj;
     });
+
+    const nom = localStorage.getItem("username");
+    const courriel = localStorage.getItem("email");
+
+    //autres variables et constantes
+
+    const jourPresent = new Date();
+    console.log(jourPresent.getDay() +" " +jourPresent.getDate() +" " +jourPresent.getMonth() +" " +jourPresent.getFullYear());
+
+    const debutSemaine = new Date(jourPresent); //dimanche de la semaine présemment affichée sur le calendrier
+    debutSemaine.setDate(jourPresent.getDate() - jourPresent.getDay());
+    console.log(debutSemaine.getDay() +" " +debutSemaine.getDate() +" " +debutSemaine.getMonth() +" " +debutSemaine.getFullYear());
 
     //éléments graphiques
     
@@ -40,6 +42,10 @@ $(document).ready(()=>{
     const logOut = document.querySelector("#log-out");
     const btnSubMenu = document.querySelector(".toggle-arrow");
     const menuBar = document.querySelector(".menu-bar");
+    const txtInfoSemaine = document.querySelector("#info-semaine");
+    const btnAvancerCalendrier = document.querySelector("#btn-avancer-semaine");
+    const btnReculerCalendrier = document.querySelector("#btn-reculer-semaine");
+    const btnAujourdhui = document.querySelector("#btn-aujourdhui");
 
     //initier les éléments graphiques
 
@@ -50,7 +56,7 @@ $(document).ready(()=>{
         body.classList.toggle("mode-sombre");
     }
 
-    const jours = ["lundi", "mardi", "mercredi", "jeudi", "vendredi", "samedi", "dimanche"];
+    const jours = ["dimanche", "lundi", "mardi", "mercredi", "jeudi", "vendredi", "samedi"];
     const conteneur = document.querySelector(".calendrier");
 
     for (let h = 0; h < 24; h++) {
@@ -103,6 +109,29 @@ $(document).ready(()=>{
         } else {
             btnSousMenu.classList.remove('show');
         }
+    }
+
+    function changerSemaine(dateDimanche){
+        //déclarer le début et la fin de la semaine à afficher
+        debutSemaine.setDate(dateDimanche);
+        console.log(debutSemaine.getDay() +" " +debutSemaine.getDate() +" " +debutSemaine.getMonth() +" " +debutSemaine.getFullYear());
+        const finSemaine = new Date(debutSemaine);
+        finSemaine.setDate(debutSemaine.getDate() + 6);
+        console.log(finSemaine.getDay() +" " +finSemaine.getDate() +" " +finSemaine.getMonth() +" " +finSemaine.getFullYear());
+
+        //mettre à jour le texte au sommet du calendrier
+        const mois = ["janvier", "février", "mars", "avril", "mai", "juin", "juillet", "août", "septembre", "octobre", "novembre", "décembre"];
+
+        let txtSemaine = "Semaine du " +debutSemaine.getDate() +" ";
+        if (debutSemaine.getDate() > finSemaine.getDate()){
+            txtSemaine += mois[debutSemaine.getMonth()] +" ";
+            if (debutSemaine.getFullYear() < finSemaine.getFullYear()){
+                txtSemaine += debutSemaine.getFullYear() +" ";
+            }
+        }
+        txtSemaine += "au " +finSemaine.getDate() +" " +mois[finSemaine.getMonth()] +" " +finSemaine.getFullYear();
+        
+        $(txtInfoSemaine).text(txtSemaine);
     }
 
     // écouteurs d'évènement
@@ -182,8 +211,7 @@ $(document).ready(()=>{
 
     //bouton "oui" du popup de déconnexion
     btnQuitter.addEventListener("click", () => {
-        localStorage.clear();
-        location.replace("http://localhost/H2025_TCH099_02_A_C1/formulaire/connexion.html");
+        deleteConnexion();
     });
 
     //bouton "non" du popup de déconnexion
@@ -288,8 +316,26 @@ $(document).ready(()=>{
     });
     */
 
+    //gestion du changement de page de calendrier
+    $(btnAvancerCalendrier).click(()=>{
+        changerSemaine(debutSemaine.getDate() +7);
+    });
 
-    //Code JavaScript pour la logique du calendrier 
+    $(btnReculerCalendrier).click(()=>{
+        changerSemaine(debutSemaine.getDate() -7);
+    });
+
+    $(btnAujourdhui).click(()=>{
+        changerSemaine(jourPresent.getDate() - jourPresent.getDay());
+    });
+
+    //Code JavaScript pour la logique du calendrier
+
+    function redemanderConnexion(){
+        localStorage.clear();
+        location.replace("http://localhost/H2025_TCH099_02_A_C1/formulaire/connexion.html");
+    }
+
 
     function ajouterEvenement(jour, heureDebut, titre, duree) {
         const cellule = document.querySelector(`.cell[data-day="${jour.toLowerCase()}"][data-hour="${heureDebut}"]`);
@@ -310,21 +356,53 @@ $(document).ready(()=>{
     ajouterEvenement("mardi", "01:00", "Cours de sport", 5);
 
 
+
+
     //requêtes à l'API
 
     /**
-     * Requête des calendriers auxquels l'utilisateur connecté à accès.
+     * Requête des calendriers auxquels l'utilisateur connecté a accès.
      * @returns {Array<object>} Tableau d'objets de référence vers les calendriers de l'utilisateur.
      */
     async function getUserCalendars(){
         try{
-            let reponseJSON = await fetch('http://localhost/H2025_TCH099_02_A_API/index.php/usercalendars/' + token);
-            let reponseObj = await reponseJSON.json();
-            console.log(reponseObj)
-            return reponseObj;
+            let reponse = await fetch('http://localhost/H2025_TCH099_02_A_API/index.php/usercalendars/' + localStorage.getItem("token"));
+
+            if (reponse.status == 401){
+                // 401 = connexion (token) expirée ou absente de la BD. Effacer la mémoire locale de l'utilisateur.
+                redemanderConnexion();
+
+            } else {
+                let reponseObj = await reponse.json();
+                return reponseObj;
+            }
+            
 
         } catch (err){
             console.log("erreur de récupération de calendriers: " + err);
+        }
+    }
+
+    /**
+     * Requête de déconnexion manuelle de l'utilisateur. Retire formellement la connexion de la BD avant de quitter.
+     */
+    async function deleteConnexion(){
+        try{
+            let reponse = await fetch('http://localhost/H2025_TCH099_02_A_API/index.php/deconnexion', {
+                method: 'DELETE',
+                body: JSON.stringify({
+                    "token": localStorage.getItem("token")
+                }),
+                headers: {'Content-Type': 'application/json'}
+            });
+
+            if (reponse.status == 200){
+                // 200 = connexion supprimée de la BD. Effacer du côté utilisateur.
+                redemanderConnexion();
+            }
+
+        } catch (err){
+            console.log("erreur de déconnexion: " +err);
         }
     }
 

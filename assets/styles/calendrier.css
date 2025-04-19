@@ -533,7 +533,8 @@ body.mode-sombre .sidebar header .toggle {
 
 .contenu-calendrier-periode .liste-periode #btn-filtrer:hover,
 .contenu-calendrier-periode .liste-periode .btn-creer-periode:hover,
-.contenu-calendrier-periode .contenu-calendrier .btn-creer-evenement:hover {
+.contenu-calendrier-periode .contenu-calendrier .btn-creer-evenement:hover,
+.btn-nav-semaine:hover  {
   background-color: var(--option-button-hover);
 }
 
@@ -629,22 +630,33 @@ body.mode-sombre .sidebar header .toggle {
   display: flex;
   background-color: var(--option-button);
   height: 2.5em;
-  width: 8em ;
+  width: fit-content;
   border-radius: 15px;
   align-items: center;
-  justify-content: space-around;  
+  justify-content: center;  
 }
 .contenu-calendrier-periode .contenu-calendrier .barre-nav .scroll-date button{
   display: flex;
   font-size: 22px;
 }
 
-.contenu-calendrier-periode .contenu-calendrier .barre-nav .format{
+.contenu-calendrier-periode .contenu-calendrier .barre-nav .format #info-semaine-container{
   display: flex;
   align-items: center;
   height: 2.5em;
   width: 30%;
  
+}
+
+#btn-aujourdhui{
+  font-size: 14px;
+  text-decoration: none;
+}
+
+.btn-nav-semaine{
+  height: 1.5em;
+  border-radius: 15px;
+  align-items: center;
 }
 
 /* Conteneur du calendrier (GridLayout) */

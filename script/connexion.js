@@ -48,7 +48,7 @@ $(document).ready(() =>{
 
     //bouton s'inscrire
     $(".btn-inscription").click(()=>{
-
+        location.replace("http://localhost/H2025_TCH099_02_A_C1/formulaire/inscription.html");
     });
 
 
