@@ -1,6 +1,9 @@
 $(document).ready(()=>{
 
     //récupérer les détails de l'utilisateur (ou le rediriger s'il n'est pas correctement connecté)
+    if (localStorage['token'] === null){
+        redemanderConnexion();
+    }
 
     let userCalendars;
     getUserCalendars().then(reponseObj =>{
@@ -13,11 +16,11 @@ $(document).ready(()=>{
     //autres variables et constantes
 
     const jourPresent = new Date();
+    const dimancheDernier = new Date(jourPresent); //dimanche de la semaine présente
+    dimancheDernier.setDate(jourPresent.getDate() - jourPresent.getDay());
 
-    const debutSemaine = new Date(jourPresent); //dimanche de la semaine présentement affichée sur le calendrier
-    debutSemaine.setDate(jourPresent.getDate() - jourPresent.getDay());
+    const debutSemaine = new Date(dimancheDernier); //dimanche de la semaine affichée sur le calendrier
     
-
     //éléments graphiques
     
     const body = document.querySelector("body");
@@ -304,7 +307,10 @@ $(document).ready(()=>{
     });
 
     $(btnAujourdhui).click(()=>{
-        changerSemaine(jourPresent.getDate() - jourPresent.getDay());
+        if (debutSemaine.getTime() != dimancheDernier.getTime()){
+            debutSemaine.setTime(dimancheDernier.getTime());
+            changerSemaine(dimancheDernier.getDate());
+        }
     });
 
     //Code JavaScript pour la logique du calendrier
@@ -314,8 +320,8 @@ $(document).ready(()=>{
         location.replace("http://localhost/H2025_TCH099_02_A_C1/formulaire/connexion.html");
     }
 
-
-    function ajouterPeriode(jour, heureDebut, titre, duree) {
+    //TODO: Changer les paramètres heureDebut et duree pour prendre un DateTime de début et un DateTime de fin.
+    function ajouterPeriode(jour, heureDebut, duree, titre) {
         const [heure, minutes] = heureDebut.split(":").map(Number);
         const cellule = document.querySelector(`.cell[data-day="${jour.toLowerCase()}"][data-hour="${heure.toString().padStart(2, '0')}:00"]`);
         if (cellule) {
@@ -334,27 +340,30 @@ $(document).ready(()=>{
         }
     }
 
-    ajouterPeriode("mardi", "01:00", "Cours de sport", 5);
-    ajouterPeriode("lundi", "15:00", "test 1", 2);
-    ajouterPeriode("mardi", "04:00", "test 2", 5);
-    ajouterPeriode("dimanche", "01:00", "test", 1);
-    ajouterPeriode("mercredi", "07:00", "shit", 8);
-    ajouterPeriode("vendredi", "01:17", "eenie", 1);
-    ajouterPeriode("vendredi", "02:45", "meenie", 1);
-    ajouterPeriode("vendredi", "03:56", "miney", 3);
-    ajouterPeriode("vendredi", "08:23", "mort", 2);
+    function ajouterDateLimite(jour, heureFin, titre){
+
+    }
+
+    ajouterPeriode("mardi", "01:00", 5, "Cours de sport");
+    ajouterPeriode("lundi", "15:00", 2, "test 1");
+    ajouterPeriode("mardi", "04:00", 5, "test 2");
+    ajouterPeriode("dimanche", "01:00", 1, "test");
+    ajouterPeriode("mercredi", "07:00", 8, "shit");
+    ajouterPeriode("vendredi", "01:17", 1, "eenie");
+    ajouterPeriode("vendredi", "02:45", 1, "meenie");
+    ajouterPeriode("vendredi", "03:56", 3, "miney");
+    ajouterPeriode("vendredi", "08:23", 2, "mort");
 
     function viderCalendrier(){
         document.querySelectorAll('.element').forEach(el => el.remove());
     }
 
     function changerSemaine(dateDimanche){
+
         //déclarer le début et la fin de la semaine à afficher
         debutSemaine.setDate(dateDimanche);
-        console.log(debutSemaine.getDay() +" " +debutSemaine.getDate() +" " +debutSemaine.getMonth() +" " +debutSemaine.getFullYear());
         const finSemaine = new Date(debutSemaine);
-        finSemaine.setDate(debutSemaine.getDate() + 6);
-        console.log(finSemaine.getDay() +" " +finSemaine.getDate() +" " +finSemaine.getMonth() +" " +finSemaine.getFullYear());
+        finSemaine.setDate(debutSemaine.getDate() + 6);;
 
         //mettre à jour le texte au sommet du calendrier
         const mois = ["janvier", "février", "mars", "avril", "mai", "juin", "juillet", "août", "septembre", "octobre", "novembre", "décembre"];
