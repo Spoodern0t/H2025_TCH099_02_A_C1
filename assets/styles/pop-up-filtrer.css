@@ -1,17 +1,17 @@
 
 /* ------- Définition de constante pour les thèmes de couleur ------- */
 :root {
-    --body-color:#FFF;
+    --body-color: #FFF;
     --bd-color: #E4E9F7;
-    --primary-color: #84A9BA;
+    --primary-color: #f0f4f7;
     --fond-dropdown-menu:#FFF;
     --fond-dropdown-menu-hover:#f1f1f1;
-    --primary-color-light: #F6F5FF;
+    --primary-color-light: #FFF;
     --toggle-color: #DDD;
     --text-color: #363636; 
     --label-color:#363636;
     --legend-color:#363636;
-    --type-color:#f0cda0;
+    --type-color:#70a0b6;
     --option-button:#3F403B;
     --option-button-hover:#505050;
 }

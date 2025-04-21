@@ -345,14 +345,14 @@ $(document).ready(()=>{
     }
 
     ajouterPeriode("mardi", "01:00", 5, "Cours de sport");
-    ajouterPeriode("lundi", "15:00", 2, "test 1");
-    ajouterPeriode("mardi", "04:00", 5, "test 2");
+    ajouterPeriode("lundi", "15:00", 2, "promenade");
+    ajouterPeriode("lundi", "04:00", 5, "bicyclette");
     ajouterPeriode("dimanche", "01:00", 1, "test");
-    ajouterPeriode("mercredi", "07:00", 8, "shit");
-    ajouterPeriode("vendredi", "01:17", 1, "eenie");
-    ajouterPeriode("vendredi", "02:45", 1, "meenie");
-    ajouterPeriode("vendredi", "03:56", 3, "miney");
-    ajouterPeriode("vendredi", "08:23", 2, "mort");
+    ajouterPeriode("mercredi", "07:00", 8, "déjeuner");
+    ajouterPeriode("vendredi", "01:17", 1, "devoir 1");
+    ajouterPeriode("vendredi", "02:45", 1, "devoir 2");
+    ajouterPeriode("vendredi", "03:56", 3, "devoir 3");
+    ajouterPeriode("vendredi", "08:23", 2, "devoir 4");
 
     function viderCalendrier(){
         document.querySelectorAll('.element').forEach(el => el.remove());
