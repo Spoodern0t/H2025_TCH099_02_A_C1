@@ -1,0 +1,168 @@
+
+/* ------- Définition de constante pour les thèmes de couleur ------- */
+:root {
+    --body-color: #FFF;
+    --bd-color: #E4E9F7;
+    --primary-color: #f0f4f7;
+    --fond-dropdown-menu:#FFF;
+    --fond-dropdown-menu-hover:#f1f1f1;
+    --primary-color-light: #FFF;
+    --toggle-color: #DDD;
+    --text-color: #363636; 
+    --label-color:#363636;
+    --legend-color:#363636;
+    --type-color:#70a0b6;
+    --option-button:#3F403B;
+    --option-button-hover:#505050;
+}
+
+body{
+    background-color: var(--body-color) !important; /* Écraser le fond par défaut de bootstrap */
+    
+}
+
+#pop-up-page {
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bd-color);
+}
+
+.pop-up-filtrer {
+    display: flex;
+    position: fixed;
+    align-items: center;
+    justify-content: center;
+    top:20%;
+    right: 44%;
+    height: 50%;
+    width: 12%;
+    border-radius: 10px;
+    border: solid rgb(106, 104, 104) 2px;
+    margin: 2em 0;
+    background-color: var(--primary-color);
+    z-index: 501;
+}
+
+
+.pop-up-filtrer legend {
+    font-family: 'Times New Roman', Times, serif;
+    color: var(--legend-color);
+    padding: 0.5em;
+    position: relative;
+    font-size:1.5em;
+    margin: 1em;
+}
+
+
+.pop-up-filtrer #btn-quit {
+    position: absolute;
+    top:-1.5em;
+    right:0.5em;
+    display: flex;
+    background-color: var(--option-button);
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    border-radius: 5px;
+    padding: 2%;
+    cursor:pointer;
+    color: white;
+    font-size: 25px;
+}
+
+
+.pop-up-filtrer #btn-quit:hover{
+    transform: scale(1.1);
+    background-color: var(--option-button-hover);
+}
+
+.form-contenu {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.pop-up-filtrer .form-contenu label,
+.pop-up-filtrer .form-contenu  .content-categorie {
+    color: var(--label-color);
+    margin-top:0.8em;
+    font-family: 'Times New Roman', Times, serif;
+    margin-bottom: 0.40em;
+}
+
+
+ .pop-up-filtrer .form-contenu .content-categorie #evenement {
+    width: 0.8em;
+    height: 0.8em;
+    margin-top: 0.3em;
+}
+
+.ligne-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 0.5em; 
+}
+
+ .pop-up-filtrer .boutons {
+    display: flex;
+    flex-direction: column;
+    margin-top: 2em;
+    justify-content: center;
+}
+
+ .pop-up-filtrer .boutons .btn{
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    font-size: 1em;
+    margin-bottom: 1em;
+    width:100%;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+#btn-save {
+    background-color: var(--option-button);
+      color:#f1f1f1;
+}
+
+#btn-save:hover {
+    background-color: var(--option-button-hover);
+
+}
+#btn-reset {
+    background-color: #b1b1b1;
+}
+#btn-reset:hover {
+    background-color:  #a0a0a0;
+
+}
+
+.input-couleur {
+    padding: 0em;
+    cursor: pointer;
+    border: none;
+    background-color:transparent;
+    font-size: larger;
+    transition: transform 0.2s ease;
+}
+#btn-save:hover,
+#btn-reset:hover,
+.input-couleur:hover {
+    transform: scale(1.05);
+}
+
+.zone-scroll {
+    max-height: 10em;         
+    overflow-y: auto;
+}
+
+.ligne-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+    margin-bottom: 0.3em;
+    font-family: 'Times New Roman', Times, serif;
+    color: var(--label-color);
+}

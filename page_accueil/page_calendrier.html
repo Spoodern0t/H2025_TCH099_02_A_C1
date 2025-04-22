@@ -3,27 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendrier</title>
+
+    <!-- Style -->
     <link href="../assets/styles/calendrier.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-     <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
+    
 
-     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
-
-     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500&display=swap" rel="stylesheet">
- 
-     
-     <link rel="stylesheet" href="../page_accueil/calendar-19/fonts/icomoon/style.css">
-   
-     <link href='../page_accueil/calendar-19/fullcalendar/packages/core/main.css' rel='stylesheet' />
-     <link href='../page_accueil/calendar-19/fullcalendar/packages/daygrid/main.css' rel='stylesheet' />
-     
-     
-     <!-- Bootstrap CSS -->
-     <link rel="stylesheet" href="css/bootstrap.min.css">
-     
-     <!-- Style -->
-     <link rel="stylesheet" href="css/style.css">
-    <title>Calendrier</title>
+    <!-- scripts -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="../script/calendrier.js"></script>
+    <script src="../script/planner.js"></script>
 </head>
 
 <body>
@@ -50,13 +41,14 @@
                         </li>
 
                         <li class="nav-link">
+                            <!-- Redondant. Devrait rediriger vers une autre page servant de menu de calendriers.-->
                             <a href="./page_calendrier.html">
                                 <i class='bx bx-home icons' ></i>
                                 <span class="text nav-text">Accueil</span>
                             </a>
                         </li>
 
-                        <li onClick=toggleSubMenu(this) class="dropdown-btn">
+                        <li class="dropdown-btn">
                             <a>
                                 <i class='bx bxs-pencil icons'></i>
                                 <span class="text nav-text">Création</span>
@@ -73,7 +65,7 @@
                             </div>
                         </ul>
 
-                        <li onClick=toggleSubMenu(this) class="dropdown-btn">
+                        <li class="dropdown-btn">
                             <a>
                                 <i class='bx bx-calendar-event icons'></i>
                                 <span class="text nav-text">Événement</span>
@@ -87,8 +79,8 @@
                             </div>
                         </ul>
 
-
-                        <li onClick=toggleSubMenu(this) class="dropdown-btn">
+                        
+                        <li class="dropdown-btn">
                             <a>
                                 <i class='bx bx-time-five icons'></i>
                                 <span class="text nav-text">Période</span>
@@ -105,7 +97,7 @@
                         <li class="nav-link">
                             <a href="#">
                                 <i class='bx bxs-share icons' ></i>
-                                <span class="text nav-text">Partagé</span>
+                                <span class="text nav-text">Partager</span>
                             </a>
                         </li>
                     </div>
@@ -116,14 +108,13 @@
                     <div class="sous-menu">
 
                         <div class="compte">
-                            <button class="dropdown-button icons">PDP</button>
-                            <span class="text nav-text">NOM</span>
+                            <button class="dropdown-button icons" id="profile-icon">👤</button>
+                            <span class="text nav-text" id="txt-nom">NOM</span>
                         </div>
                         <!-- Menu déroulant des options de l'utilisateur-->
                         <ul class="dropdown-menu">
                                 <li><a href="#" id="compte">Compte</a></li>
                                 <li><a href="#" id="parametre">Paramètre</a></li>
-                                <li><a href="#" id="deconnection">Déconnection</a></li>
                         </ul>
 
                         <li class="nav-link" id="log-out">
@@ -169,7 +160,7 @@
                         </a>
                     </div>
 
-                    <div id="btn-creer-periode">
+                    <div class="btn-creer-periode">
                         <a href="#">
                             <button>
                                 <span>+</span>
@@ -179,10 +170,11 @@
                 </div>
 
                 <div class="titre">
-                    <span>Remember Me</span>
-                    <span id="sous-titre">Don't forget your schedule UNC</span>
+                    <span>Planificateur de tâches</span>
+                    <span id="sous-titre">Organisez votre journée en toute simplicité</span>
                 </div>
 
+                <!--
                 <div class="contenu-periode">
                     
                     <div id="categorie-image">
@@ -219,6 +211,8 @@
                         </div>
                     </div>
                 </div>
+                -->
+                
             </div>
 
         <div class="contenu-calendrier">
@@ -226,23 +220,28 @@
 
                 <div class="scroll-date">
 
-                    <div id="retour"> 
-                        <button>
+                    <div> 
+                        <button id="btn-reculer-semaine" class="btn-nav-semaine">
                             <i class='bx bx-chevron-left toggle'></i>
                         </button>
                     </div>
 
-                    <div id="semaine-mois">
-                        <span>TODAY</span>
+                    <div>
+                        <button id="btn-aujourdhui" class="btn-nav-semaine">AUJOURD'HUI</button>
                     </div>
 
-                    <div id="avancer"> 
-                        <button>
+                    <div> 
+                        <button id="btn-avancer-semaine" class="btn-nav-semaine">
                             <i class='bx bx-chevron-right toggle'></i>
                         </button>
                     </div>
                 </div>
 
+                <div id="info-semaine-container">
+                    <span id="info-semaine">Semaine du [jour] au [jour]</span>
+                </div>
+
+                <!--
                 <div class="format">
 
                     <div class="format-style">
@@ -257,9 +256,10 @@
                         </button>
                     </div>
                 </div>
+                -->
                 
 
-                <div id="btn-creer-evenement">
+                <div class="btn-creer-evenement">
                     <a href="#">
                         <button>
                             <span>+</span>
@@ -267,97 +267,19 @@
                     </a>
                 </div>
             </div>
+            <div class="conteneur-calendrier">
                 <div class="calendrier">
-                    <div class="content">
-                        <div id='calendar'></div>
-                      </div>
-                        
-                        
-                    
-                        <script src="../page_accueil/calendar-19/js/jquery-3.3.1.min.js"></script>
-                        <script src="../page_accueil/calendar-19/js/popper.min.js"></script>
-                        <script src="../page_accueil/calendar-19/js/bootstrap.min.js"></script>
-                    
-                        <script src='../page_accueil/calendar-19/fullcalendar/packages/core/main.js'></script>
-                        <script src='../page_accueil/calendar-19/fullcalendar/packages/interaction/main.js'></script>
-                        <script src='../page_accueil/calendar-19/fullcalendar/packages/daygrid/main.js'></script>
-                    
-                        <script>
-                        document.addEventListener('DOMContentLoaded', function() {
-                        var calendarEl = document.getElementById('calendar');
-                    
-                        var calendar = new FullCalendar.Calendar(calendarEl, {
-                          plugins: [ 'interaction', 'dayGrid' ],
-                          defaultDate: '2020-02-12',
-                          editable: true,
-                          eventLimit: true, // allow "more" link when too many events
-                          events: [
-                            {
-                              title: 'All Day Event',
-                              start: '2020-02-01'
-                            },
-                            {
-                              title: 'Long Event',
-                              start: '2020-02-07',
-                              end: '2020-02-10'
-                            },
-                            {
-                              groupId: 999,
-                              title: 'Repeating Event',
-                              start: '2020-02-09T16:00:00'
-                            },
-                            {
-                              groupId: 999,
-                              title: 'Repeating Event',
-                              start: '2020-02-16T16:00:00'
-                            },
-                            {
-                              title: 'Conference',
-                              start: '2020-02-11',
-                              end: '2020-02-13'
-                            },
-                            {
-                              title: 'Meeting',
-                              start: '2020-02-12T10:30:00',
-                              end: '2020-02-12T12:30:00'
-                            },
-                            {
-                              title: 'Lunch',
-                              start: '2020-02-12T12:00:00'
-                            },
-                            {
-                              title: 'Meeting',
-                              start: '2020-02-12T14:30:00'
-                            },
-                            {
-                              title: 'Happy Hour',
-                              start: '2020-02-12T17:30:00'
-                            },
-                            {
-                              title: 'Dinner',
-                              start: '2020-02-12T20:00:00'
-                            },
-                            {
-                              title: 'Birthday Party',
-                              start: '2020-02-13T07:00:00'
-                            },
-                            {
-                              title: 'Click for Google',
-                              url: 'http://google.com/',
-                              start: '2020-02-28'
-                            }
-                          ]
-                        });
-                    
-                        calendar.render();
-                      });
-                    
-                        </script>
-                    
-                        <script src="js/main.js"></script>
+                    <div class="jour-calendrier"></div>
+                    <div class="jour-calendrier">Dimanche</div>
+                    <div class="jour-calendrier">Lundi</div>
+                    <div class="jour-calendrier">Mardi</div>
+                    <div class="jour-calendrier">Mercredi</div>
+                    <div class="jour-calendrier">Jeudi</div>
+                    <div class="jour-calendrier">Vendredi</div>
+                    <div class="jour-calendrier">Samedi</div>
                 </div>
             </div>
-
+        </div>
     </section>
     
     <div id="conteneur-pop-up"></div>
@@ -371,7 +293,5 @@
             </div>
         </div>
     </div>
-
-    <script src="../script/calendrier.js"></script>
 </body>
 </html>

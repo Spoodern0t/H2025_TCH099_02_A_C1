@@ -1,17 +1,17 @@
 
 /* ------- Définition de constante pour les thèmes de couleur ------- */
 :root {
-    --primary-color: #FFEBD0;
+    --primary-color: #f0f4f7;
     --body-color:#FFF;
     --bd-color: #E4E9F7;
     --fond-dropdown-menu:#FFF;
     --fond-dropdown-menu-hover:#f1f1f1;
-    --primary-color-light: #F6F5FF;
+    --primary-color-light: #FFF;
     --toggle-color: #DDD;
     --text-color: #363636;  
     --legend-color:#363636;
     --legend-color:#363636;
-    --type-color:#f0cda0;
+    --type-color:#70a0b6;
   }
 
 
@@ -141,20 +141,20 @@ body{
 }
 
 .pop-up-periode-limite .form-contenu label,
-.pop-up-periode-limite .form-contenu .periode {
+.pop-up-periode-limite .form-contenu .chk-periode {
     color: var(--label-color);
     margin-top:10px;
     font-family: 'Times New Roman', Times, serif;
     margin-bottom: 5px;
 }
 
-.pop-up-periode-limite .form-contenu .periode {
+.pop-up-periode-limite .form-contenu .chk-periode {
     display: flex;
     align-items: center; 
     gap: 0.5em; 
 }
 
-.pop-up-periode-limite .form-contenu .periode input {
+.pop-up-periode-limite .form-contenu .chk-periode input {
     color: var(--text-color);
     margin:5px 0 0 0;
     cursor:pointer;

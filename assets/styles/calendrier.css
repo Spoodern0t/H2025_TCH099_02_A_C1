@@ -4,20 +4,23 @@
   --recherche-box-couleur: hsl(192, 10%, 90%);
   --recherche-box-couleur-hover:hsl(0, 0%, 80%);
   --barre-nav:#FFF;
-  --option-button:#278783;
-  --option-button-hover:rgb(17, 112, 107);
-  --contenu-calendrier-periode:#fde3c1;
+  --option-button:#3F403B;
+  --option-button-hover:#505050;
+  --contenu-calendrier-periode:#E9ECEE;
   --sidebar-color: #FFF;
   --btn-dropdwon: black;
   --fond-dropdown-menu:#FFF;
   --fond-dropdown-menu-hover:#f1f1f1;
   --overlay-couleur: rgba(70, 70, 70, 0.5);
-  --box-shadow-couleur: 2px 2px 10px #f6dec0;
-  --barre-nav-color:#fdd39b;
+  --box-shadow-couleur: 2px 2px 10px #E9ECEE;
+  --barre-nav-color:#84A9BA;
+  --periode-evenement-color : #70a0b6;
+  --periode-evenement-color-hover :#6697b5;
+  --sous-titre-color : #606060;
 
   --body-color:#FFF;
-  --primary-color: #FFEBD0;
-  --primary-color-light: #fff7ec;
+  --primary-color: #f0f4f7;
+  --primary-color-light: #FFF;
   --toggle-color: #DDD;
   --text-color: #404040;
 
@@ -206,10 +209,9 @@ body.mode-sombre .sidebar header .toggle{
 } 
 
 .sidebar .logo img {
-    width:4.5em;
+    width:3em;
     border-radius: 6px;
     position: relative;
-    right:0.6em
 }
 
 .sidebar .sous-menu .compte {
@@ -244,7 +246,6 @@ body.mode-sombre .sidebar header .toggle{
   grid-template-rows: 0fr;
   position: relative;
   left: 3em;
-  cursor:pointer;
   padding: 0;
   width: max-content;
   transition: var(--transition-03);
@@ -257,8 +258,11 @@ body.mode-sombre .sidebar header .toggle{
   color: var(--text-color);
   padding: 0.5em;
   padding-right: 4em;
+  padding-left: 1em;
   border-radius: 15px;
   transition: var(--transition-03);
+  cursor:pointer;
+  width: 10em;
 }
 
 .sidebar .sub-menu li span:hover {
@@ -295,6 +299,7 @@ body.mode-sombre .sidebar header .toggle{
   justify-content: center;
   height: 2.5em;
   width: 2.5em;
+  min-width: 40px;
   background-color: var(--option-button);
   border: 0;
   border-radius: 100px;
@@ -426,6 +431,9 @@ body.mode-sombre{
     --barre-nav-color:#3f3930;
     --type-color:#312d27; 
     --label-color:#f5f2f2;
+    --periode-evenement-color: #48453f; 
+    --periode-evenement-color-hover: #56524b;
+    --sous-titre-color :rgb(183, 177, 166);
   }
 
 body.mode-sombre .menu-bar .mode-luminosite i.soleil{
@@ -467,7 +475,7 @@ body.mode-sombre .sidebar header .toggle {
   box-shadow: var(--box-shadow-couleur);
   display: flex;
   flex-direction: column;
-
+  transition: var(--transition-03);
 }
 
 .contenu-calendrier {
@@ -478,6 +486,14 @@ body.mode-sombre .sidebar header .toggle {
   right: 3em;
   background-color: var(--contenu-calendrier-periode);
   border-radius: 5px;
+  box-shadow: var(--box-shadow-couleur);
+  transition: var(--transition-03);
+}
+
+.conteneur-calendrier {
+  height: 92%;
+  overflow-y: auto; 
+  background-color: var(--contenu-calendrier-periode);
   box-shadow: var(--box-shadow-couleur);
 }
 
@@ -498,7 +514,7 @@ body.mode-sombre .sidebar header .toggle {
 
 }
 
-.contenu-calendrier-periode .liste-periode #btn-creer-periode {
+.contenu-calendrier-periode .liste-periode .btn-creer-periode {
   position: absolute;
   right: 1.5em;
   top: 0em;
@@ -511,14 +527,14 @@ body.mode-sombre .sidebar header .toggle {
   margin-left:1.5em;
   border-radius: 100px;
   background-color: var(--option-button);
-  
   transition: var(--transition-03);
   cursor: pointer;
 }
 
 .contenu-calendrier-periode .liste-periode #btn-filtrer:hover,
-.contenu-calendrier-periode .liste-periode #btn-creer-periode:hover,
-.contenu-calendrier-periode .contenu-calendrier #btn-creer-evenement:hover {
+.contenu-calendrier-periode .liste-periode .btn-creer-periode:hover,
+.contenu-calendrier-periode .contenu-calendrier .btn-creer-evenement:hover,
+.btn-nav-semaine:hover  {
   background-color: var(--option-button-hover);
 }
 
@@ -529,10 +545,13 @@ body.mode-sombre .sidebar header .toggle {
   margin-right: 1em;
   margin-bottom: 1em;
   color: var(--text-color);
+  transition: var(--transition-03);
 }
 
 .contenu-calendrier-periode .liste-periode .titre #sous-titre {
-  color: rgb(123, 118, 109);
+  color: var(--sous-titre-color);
+  transition: var(--transition-03);
+  font-size: 90%;
 }
 
 
@@ -540,23 +559,29 @@ body.mode-sombre .sidebar header .toggle {
   display: flex;
   align-items: center;
   height: 4.5em;
-  background-color: #f0b466;
+  background-color: var( --periode-evenement-color);
   margin-bottom:2em;
   margin-left: 1em;
   margin-right: 1em;
   border-radius: 15px;
   padding:0.5em;
   gap:2em;
+  transition: background-color ease 0.3s, var(--transition-04);
+}
+.contenu-calendrier-periode .liste-periode .contenu-periode:hover,
+.contenu-calendrier-periode .liste-periode .contenu-periode:hover .description {
+  transform: scale(1.05);  
+  font-weight: 500;
 }
 
 .contenu-calendrier-periode .liste-periode .contenu-periode #categorie-image {
   display:flex;
   align-items: center;
   justify-content: center;
-  background-color: #278783;
   border-radius: 15px;
   width: 3.5em;
   height: 3.5em;
+  margin-left: 0.5em;
 }
 
 
@@ -572,6 +597,8 @@ body.mode-sombre .sidebar header .toggle {
   font-size: small;
   gap: 0.5em;
   width: fit-content;
+  transition: var(--transition-03);
+  color: var(--text-color);
 }
 
 
@@ -584,9 +611,10 @@ body.mode-sombre .sidebar header .toggle {
   justify-content: space-between;
   padding: 25px;
   font-family: Arial, Helvetica, sans-serif;
+  transition: var(--transition-03);
 }
 
-.contenu-calendrier-periode .contenu-calendrier #btn-creer-evenement {
+.contenu-calendrier-periode .contenu-calendrier .btn-creer-evenement {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -602,22 +630,98 @@ body.mode-sombre .sidebar header .toggle {
   display: flex;
   background-color: var(--option-button);
   height: 2.5em;
-  width: 8em ;
+  width: fit-content;
   border-radius: 15px;
   align-items: center;
-  justify-content: space-around;  
+  justify-content: center;  
 }
 .contenu-calendrier-periode .contenu-calendrier .barre-nav .scroll-date button{
   display: flex;
   font-size: 22px;
 }
 
-.contenu-calendrier-periode .contenu-calendrier .barre-nav .format{
+.contenu-calendrier-periode .contenu-calendrier .barre-nav .format #info-semaine-container{
   display: flex;
   align-items: center;
   height: 2.5em;
   width: 30%;
  
+}
+
+#btn-aujourdhui{
+  font-size: 14px;
+  text-decoration: none;
+}
+
+.btn-nav-semaine{
+  height: 1.5em;
+  border-radius: 15px;
+  align-items: center;
+}
+
+/* Conteneur du calendrier (GridLayout) */
+
+.calendrier {
+  display: grid;
+  grid-template-columns: 100px repeat(7, 1fr);
+  border: 1px solid #ccc;
+  font-family: sans-serif;
+}
+
+.jour-calendrier {
+  font-weight: bold;
+  background-color: #f0f0f0;
+  text-align: center;
+  padding: 5px;
+  border-bottom: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+}
+
+.calendrier-ligne {
+  display: contents;
+}
+
+.cell {
+  border-right: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  height: 60px;
+  position: relative;
+  background-color: var(--contenu-calendrier-periode);
+  transition: var(--transition-03);
+}
+
+.heure-cell {
+  background-color: #f9f9f9;
+  text-align: center;
+  font-size: 12px;
+}
+
+.heure-label {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.periode {
+  background-color: var(--periode-evenement-color);
+  color: var(--text-color);
+  width: 90%;
+  top: 2px;
+  left: 5%;
+  padding: 5px;
+  border-radius: 4px;
+  font-size: 12px;
+  border-radius: 4px;
+  position: relative;
+  overflow: hidden;
+  transition: var(--transition-03), box-shadow 0.2s ease;
+  cursor: pointer;
+}
+
+.periode:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  background-color: var(--periode-evenement-color-hover );
 }
 
 #format-semaine, #format-mois {

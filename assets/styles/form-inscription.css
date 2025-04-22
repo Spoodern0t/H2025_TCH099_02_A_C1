@@ -8,7 +8,7 @@ body {
 
 /* Section principale */
 .page {
-    height: 100vh;
+    height: 98vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -148,6 +148,10 @@ body {
 
 #logo{
     position: absolute;
-    top:0;
-    left:0;
+    top:20px;
+    left:10px;
+}
+
+#img-logo{
+    width: 3em;
 }
